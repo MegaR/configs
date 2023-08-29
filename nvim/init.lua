@@ -164,6 +164,8 @@ require('lazy').setup({
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
+      show_current_context = true,
+      show_current_context_start = false,
     },
   },
 
@@ -234,6 +236,7 @@ require('lazy').setup({
   {
     'rmagatti/auto-session',
     config = function()
+---@diagnostic disable-next-line: missing-fields
       require("auto-session").setup {
         log_level = "error",
       }
@@ -244,6 +247,24 @@ require('lazy').setup({
     event = "VeryLazy",
     opts = {},
     config = function(_, opts) require 'lsp_signature'.setup(opts) end
+  },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     -- add any options here
+  --   },
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     "rcarriga/nvim-notify",
+  --   }
+  -- },
+  {
+    "mbbill/undotree",
   },
 }, {})
 
@@ -371,6 +392,7 @@ vim.api.nvim_set_keymap(
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
+---@diagnostic disable-next-line: missing-fields
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
@@ -542,7 +564,9 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+---@diagnostic disable-next-line: missing-fields
 cmp.setup {
+  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
