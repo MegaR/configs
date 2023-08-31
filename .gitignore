@@ -1,7 +1,5 @@
 tmux-*.log
 
-/Google
-/capacitor
-/configstore
-/gh
-/wslu
+/*
+!/nvim
+!/tmux
