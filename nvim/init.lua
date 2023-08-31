@@ -336,7 +336,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
-    sorting_strategy = "descending",
+    sorting_strategy = "ascending",
     file_ignore_patterns = { "node%_modules/.*" },
     pickers = {
       -- find_files = {
