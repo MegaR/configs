@@ -3,3 +3,4 @@ tmux-*.log
 /*
 !/nvim
 !/tmux
+!/starship.toml
