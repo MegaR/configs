@@ -236,7 +236,7 @@ require('lazy').setup({
   {
     'rmagatti/auto-session',
     config = function()
----@diagnostic disable-next-line: missing-fields
+      ---@diagnostic disable-next-line: missing-fields
       require("auto-session").setup {
         log_level = "error",
       }
@@ -248,23 +248,32 @@ require('lazy').setup({
     opts = {},
     config = function(_, opts) require 'lsp_signature'.setup(opts) end
   },
-  -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     -- add any options here
-  --   },
-  --   dependencies = {
-  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --     "MunifTanjim/nui.nvim",
-  --     -- OPTIONAL:
-  --     --   `nvim-notify` is only needed, if you want to use the notification view.
-  --     --   If not available, we use `mini` as the fallback
-  --     "rcarriga/nvim-notify",
-  --   }
-  -- },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  },
   {
     "mbbill/undotree",
+  },
+  {
+    "folke/twilight.nvim",
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    }
   },
 }, {})
 
@@ -336,7 +345,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
-    sorting_strategy = "ascending",
+    -- sorting_strategy = "ascending",
     file_ignore_patterns = { "node%_modules/.*" },
     pickers = {
       -- find_files = {
