@@ -117,11 +117,11 @@ require('lazy').setup({
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
+        add = { text = '▎' },
+        change = { text = '▎' },
         delete = { text = '_' },
         topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        changedelete = { text = '▎' },
       },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
@@ -275,6 +275,11 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
     }
   },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}
+  },
 }, {})
 
 -- [[ Setting options ]]
@@ -286,6 +291,7 @@ vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -319,6 +325,12 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.scrolloff = 10
+
+-- set diagnostic icons
+vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 -- [[ Basic Keymaps ]]
 
