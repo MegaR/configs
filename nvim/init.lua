@@ -236,10 +236,13 @@ require('lazy').setup({
   },
   {
     'rmagatti/auto-session',
+    -- lazy = true,
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("auto-session").setup {
         log_level = "error",
+        pre_save_cmds = {require("neo-tree.sources.manager").close_all},
+        bypass_session_save_file_types = {"neo-tree"},
       }
     end,
   },
@@ -282,6 +285,43 @@ require('lazy').setup({
     event = "InsertEnter",
     opts = {}
   },
+  {
+    'stevearc/dressing.nvim',
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("neo-tree").setup({
+        close_if_last_window = true,
+        filesystem = {
+          follow_current_file = {
+            enabled = true,
+            leave_dirs_open = false,
+          }
+        },
+        window = {
+          position = "left",
+        },
+        default_component_configs = {
+          git_status = {
+            symbols = {
+              untracked = "",
+              ignored = "",
+              unstaged = "",
+              staged = "",
+              -- conflict = "",
+            },
+          },
+        },
+      })
+    end,
+  },
 }, {})
 
 -- [[ Setting options ]]
@@ -289,7 +329,7 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
-vim.o.hlsearch = true
+vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
@@ -407,16 +447,20 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
+vim.keymap.set('n', '<leader>f', ":Neotree toggle<cr>", { desc = 'Neotree' })
+
+vim.keymap.set('n', '<Tab>', '<c-w>w')
+
 -- open file_browser with the path of the current buffer
-vim.api.nvim_set_keymap(
-  "n",
-  "<space>f",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  {
-    noremap = true,
-    desc = '[F]ile browser',
-  }
-)
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<space>f",
+--   ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+--   {
+--     noremap = true,
+--     desc = '[F]ile browser',
+--   }
+-- )
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
