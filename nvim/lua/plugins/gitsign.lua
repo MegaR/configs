@@ -11,12 +11,23 @@ return {
 			changedelete = { text = '▎' },
 		},
 		on_attach = function(bufnr)
+			local wk = require('which-key')
+
+			wk.register({
+				g = {
+					name = "Git",
+				},
+			}, { prefix = "<leader>" })
+
 			vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-				{ buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+				{ buffer = bufnr, desc = '[P]revious Hunk' })
 			vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk,
-				{ buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-			vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk,
-				{ buffer = bufnr, desc = '[P]review [H]unk' })
+				{ buffer = bufnr, desc = '[N]ext Hunk' })
+			vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk,
+				{ buffer = bufnr, desc = '[P]review Hunk' })
+			vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk,
+				{ buffer = bufnr, desc = '[R]eset Hunk' })
+
 		end,
 	},
 }
