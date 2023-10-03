@@ -135,6 +135,8 @@ vim.o.scrolloff = 10
 
 -- set tab to 4 spaces
 vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
 
 -- set diagnostic icons
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
