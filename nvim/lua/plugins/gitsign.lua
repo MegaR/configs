@@ -27,6 +27,10 @@ return {
 				{ buffer = bufnr, desc = '[P]review Hunk' })
 			vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk,
 				{ buffer = bufnr, desc = '[R]eset Hunk' })
+			vim.keymap.set('n', '<leader>gs', require('gitsigns').stage_hunk,
+				{ buffer = bufnr, desc = '[S]tage Hunk' })
+			vim.keymap.set('n', '<leader>gu', require('gitsigns').undo_stage_hunk,
+				{ buffer = bufnr, desc = '[U]nstage Hunk' })
 			vim.keymap.set('n', '<leader>gb', ':GBrowse', { buffer = bufnr, desc = '[B]rowse file' })
 
 		end,
