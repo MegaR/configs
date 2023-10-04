@@ -10,15 +10,7 @@ return {
 			topdelete = { text = '‾' },
 			changedelete = { text = '▎' },
 		},
-		on_attach = function(bufnr)
-			local wk = require('which-key')
-
-			wk.register({
-				g = {
-					name = "Git",
-				},
-			}, { prefix = "<leader>" })
-
+		on_attach = function(bufnr)	
 			vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
 				{ buffer = bufnr, desc = '[P]revious Hunk' })
 			vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk,
