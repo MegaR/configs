@@ -235,10 +235,10 @@ vim.keymap.set('n', '<Tab>', '<c-w>w')
 ---@diagnostic disable-next-line: missing-fields
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'php' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = false,
+  auto_install = true,
 
   highlight = { enable = true },
   indent = { enable = true },
@@ -448,6 +448,25 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- this probably does nothing
+require("catppuccin").setup({
+  flavour = 'mocha',
+  dim_inactive = {
+    enabled = true, -- dims the background color of inactive window
+    shade = "dark",
+    percentage = 1, -- percentage of the shade to apply to the inactive window
+  },
+
+  integrations = {
+    cmp = true,
+    gitsigns = true,
+    nvimtree = true,
+    treesitter = true,
+    -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+  },
+})
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
