@@ -3,10 +3,13 @@ return {
 	'lukas-reineke/indent-blankline.nvim',
 	-- Enable `lukas-reineke/indent-blankline.nvim`
 	-- See `:help indent_blankline.txt`
-	opts = {
-		char = '┊',
-		show_trailing_blankline_indent = false,
-		show_current_context = true,
-		show_current_context_start = false,
-	},
+	main = "ibl",
+	opts = {},
+	config = function()
+		require('ibl').setup({
+			enabled = true,
+			indent = { char = '▏' },
+			scope = { show_start = false }
+		})
+	end
 }
