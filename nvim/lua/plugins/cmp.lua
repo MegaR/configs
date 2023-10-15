@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 return {
 	-- Autocompletion
 	'hrsh7th/nvim-cmp',
@@ -12,12 +13,16 @@ return {
 
 		-- Adds a number of user-friendly snippets
 		'rafamadriz/friendly-snippets',
+
+		-- adds symbols
+		'onsails/lspkind.nvim',
 	},
 	config = function()
 		-- [[ Configure nvim-cmp ]]
 		-- See `:help cmp`
 		local cmp = require 'cmp'
 		local luasnip = require 'luasnip'
+		local lspkind = require 'lspkind'
 		require('luasnip.loaders.from_vscode').lazy_load()
 		luasnip.config.setup {}
 
@@ -66,10 +71,49 @@ return {
 				end, { 'i', 's' }),
 			},
 			sources = {
-				{ name = "copilot" },
+				{ name = 'copilot' },
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
 				{ name = 'path' },
+			},
+			---@diagnostic disable-next-line: missing-fields
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = 'symbol',
+					maxwidth = 50,
+					elipsis_char = '…',
+					before = function(entry, vim_item)
+						return vim_item
+					end,
+					symbol_map = {
+						Text = "󰉿",
+						Method = "󰆧",
+						Function = "󰊕",
+						Constructor = "",
+						Field = "󰜢",
+						Variable = "󰀫",
+						Class = "󰠱",
+						Interface = "",
+						Module = "",
+						Property = "󰜢",
+						Unit = "󰑭",
+						Value = "󰎠",
+						Enum = "",
+						Keyword = "󰌋",
+						Snippet = "",
+						Color = "󰏘",
+						File = "󰈙",
+						Reference = "󰈇",
+						Folder = "󰉋",
+						EnumMember = "",
+						Constant = "󰏿",
+						Struct = "󰙅",
+						Event = "",
+						Operator = "󰆕",
+						TypeParameter = "",
+						Copilot = "",
+					},
+				}),
 			},
 		}
 	end
