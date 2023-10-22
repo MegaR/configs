@@ -3,6 +3,9 @@ return {
 	-- Autocompletion
 	'hrsh7th/nvim-cmp',
 	dependencies = {
+		-- show function parameters while typing
+		'hrsh7th/cmp-nvim-lsp-signature-help',
+
 		-- Snippet Engine & its associated nvim-cmp source
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
@@ -71,6 +74,7 @@ return {
 				end, { 'i', 's' }),
 			},
 			sources = {
+				{ name = 'nvim_lsp_signature_help' },
 				{ name = 'copilot' },
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
