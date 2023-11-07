@@ -217,7 +217,8 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 vim.keymap.set('n', '<leader>f', ":Neotree toggle<cr>", { desc = 'Neotree' })
 
-vim.keymap.set('n', '<Tab>', '<c-w>w')
+-- close buffer
+vim.keymap.set('n', '<c-x>', ':bd<cr>')
 
 -- open file_browser with the path of the current buffer
 -- vim.api.nvim_set_keymap(
