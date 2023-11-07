@@ -31,9 +31,14 @@ return {
 
 		wk.register({
 			w = {
-			name = "Workspace",
+				name = "Workspace",
 			},
 		}, { prefix = "<leader>" })
 
+		wk.register({
+			p = {
+				name = "Package",
+			},
+		}, { prefix = "<leader>" })
 	end
 }
