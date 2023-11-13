@@ -17,7 +17,7 @@ return {
 				use_libuv_file_watcher = true,
 			},
 			window = {
-				position = "left",
+				position = "right",
 			},
 			default_component_configs = {
 				git_status = {
