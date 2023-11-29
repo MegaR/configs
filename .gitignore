@@ -4,3 +4,4 @@ tmux-*.log
 !/nvim
 !/tmux
 !/starship.toml
+!/home-manager
