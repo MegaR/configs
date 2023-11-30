@@ -13,8 +13,6 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = with pkgs; [
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -23,7 +21,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    # pkgs.rustup
     rustc
     cargo
 
@@ -31,10 +28,11 @@
     ripgrep
     fzf
 
-    lazygit
     kubectl
     helm
     k9s
+
+    lazygit
     lazydocker
     starship
     tmux
