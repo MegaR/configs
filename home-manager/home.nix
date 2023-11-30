@@ -15,7 +15,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -24,29 +24,31 @@
     # '')
 
     # pkgs.rustup
-    pkgs.rustc
-    pkgs.cargo
+    rustc
+    cargo
 
-    pkgs.neovim
-    pkgs.ripgrep
-    pkgs.fzf
+    neovim
+    ripgrep
+    fzf
 
-    pkgs.lazygit
-    pkgs.kubectl
-    pkgs.starship
-    pkgs.tmux
-    pkgs.zoxide
+    lazygit
+    kubectl
+    helm
+    k9s
+    lazydocker
+    starship
+    tmux
+    zoxide
 
-    pkgs.nodejs_20
-    pkgs.nodePackages.typescript
-    pkgs.bun
+    nodejs_20
+    nodePackages.typescript
+    bun
 
-    pkgs.zip
-    pkgs.git
+    zip
+    git
 
-    pkgs.openssl
-    pkgs.openssl_legacy
-    pkgs.gcc
+    openssl
+    gcc
   ];
 
   home.file = {
