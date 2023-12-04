@@ -41,6 +41,7 @@
     nodejs_20
     nodePackages.typescript
     bun
+    ((pkgs.yarn.override { nodejs = null; }).overrideAttrs (oldAttrs: { meta.platforms = nodejs.meta.platforms; }))
 
     zip
     git
