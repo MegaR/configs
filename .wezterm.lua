@@ -10,14 +10,14 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.front_end = 'WebGpu'
-config.webgpu_power_preference = 'HighPerformance'
-for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
-  if gpu.device_type == "DiscreteGpu" then
-    config.webgpu_preferred_adapter = gpu
-    break
-  end
-end
+-- config.front_end = 'WebGpu'
+-- config.webgpu_power_preference = 'HighPerformance'
+-- for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+--   if gpu.device_type == "DiscreteGpu" then
+--     config.webgpu_preferred_adapter = gpu
+--     break
+--   end
+-- end
 
 -- config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font = wezterm.font 'MonaspiceNe NF'
@@ -41,16 +41,16 @@ config.window_padding = {
   bottom = 0,
 }
 
-local function is_inside_vim(pane)
-  local tty = pane:get_tty_name()
-  if tty == nil then return false end
-
-  local success, _stdout, _stderr = wezterm.run_child_process
-    { 'sh', '-c',
-      'ps -o state= -o comm= -t' .. wezterm.shell_quote_arg(tty) .. ' | ' ..
-      'grep -iqE \'^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$\'' }
-  return success
-end
+-- local function is_inside_vim(pane)
+--   local tty = pane:get_tty_name()
+--   if tty == nil then return false end
+--
+--   local success, _stdout, _stderr = wezterm.run_child_process
+--     { 'sh', '-c',
+--       'ps -o state= -o comm= -t' .. wezterm.shell_quote_arg(tty) .. ' | ' ..
+--       'grep -iqE \'^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$\'' }
+--   return success
+-- end
 
 -- local function is_outside_vim(pane) return not is_inside_vim(pane) end
 --
