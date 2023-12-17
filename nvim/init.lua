@@ -80,7 +80,7 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim',          opts = {} },
   --tmux integration
-  { "christoomey/vim-tmux-navigator", lazy = false },
+  -- { "christoomey/vim-tmux-navigator", lazy = false },
 
   -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
