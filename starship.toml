@@ -19,6 +19,7 @@ $golang\
 $php\
 [](fg:#212736 bg:#1d2230)\
 $nix_shell\
+${env_var.VUE_APP_HOSPITAL}\
 [ ](fg:#1d2230)\
 \n$character"""
 
@@ -80,7 +81,12 @@ style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
 [time]
-disabled = false
+disabled = true
 time_format = "%R" # Hour:Minute Format
 style = "bg:#1d2230"
 format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+
+[env_var.VUE_APP_HOSPITAL]
+symbol = "󰋡"
+style = "bg:#1d2230"
+format = '[[ 󰋡 $env_value ](fg:#a0a9cb bg:#1d2230)]($style)'
