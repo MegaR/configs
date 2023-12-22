@@ -60,6 +60,7 @@ format = "[ $hostname ](bg:#458588)[\ue0b0](bg:light fg:#458588)"
 [git_branch]
 symbol = ""
 format = ' $symbol $branch '
+truncation_length = 15
 
 [git_status]
 format = '$all_status$ahead_behind'
