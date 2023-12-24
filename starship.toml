@@ -1,32 +1,43 @@
-# [░▒▓](#a3aed2)\
-# [  ](bg:#a3aed2 fg:#090c0c)\
-# [](bg:#769ff0 fg:#a3aed2)\
-
-# format = """
-# [ ](bg:#1d2230)\
-# [ ](bg:#212736)\
-# [ ](bg:#394260)\
 format = """
-$directory\
-[\ue0b0](fg:#769ff0 bg:#394260)\
+[ \
+$directory \
+](fg:textLight bg:light)\
+[\ue0b0](fg:light bg:medium)\
+[\
 $git_branch\
 $git_status\
-[\ue0b0](fg:#394260 bg:#212736)\
+](fg:textMedium bg:medium)\
+[\ue0b0](fg:medium bg:dark)\
+[\
 $nix_shell\
 ${env_var.VUE_APP_HOSPITAL}\
-[\ue0b0](fg:#212736)\
+](fg:textMedium bg:dark)\
+[\ue0b0](fg:dark)\
+\
 $fill\
-[\ue0b2](fg:#1d2230)\
-$nodejs\
+\
+[\ue0b2](fg:dark)\
+[$nodejs\
 $bun\
 $rust\
-$php\
+$php](fg:textMedium bg:dark)\
 \n$character"""
 
+palette = 'gruvbox'
+[palettes.gruvbox]
+background = "#282828"
+light = "#d65d0e"
+medium = "#665c54"
+dark = "#3c3836"
+textlight = "#fbf1c7"
+textmedium = "#a89984"
+textdark = "#7c6f64"
+
+[fill]
+symbol = " "
+
 [directory]
-style = "fg:#1d2230 bg:#769ff0"
-#style = "fg:#e3e5e5 bg:#769ff0"
-format = "[ $path ]($style)"
+format = "$path"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -38,48 +49,36 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+format = ' $symbol $branch '
 
 [git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+format = '$all_status$ahead_behind'
 
 [nodejs]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#1d2230)]($style)'
+format = ' $symbol ($version) '
 detect_files = ["package-lock.json", "yarn.lock"]
 detect_folders = []
 
 [bun]
 symbol = "🍔"
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#1d2230)]($style)'
+format = ' $symbol ($version) '
 detect_files = ["bun.lockb", "bunfig.toml"]
 
 [rust]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#1d2230)]($style)'
+format = ' $symbol ($version) '
 
 [php]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#1d2230)]($style)'
+format = ' $symbol ($version) '
 
 [nix_shell]
 disabled = false
-style = "fg:#769ff0 bg:#212736"
-impure_msg = '[impure shell](bold red)'
-pure_msg = '[pure shell](bold green)'
-unknown_msg = '[unknown shell](bold yellow)'
-format = '[❄️ $state( \($name\))]($style)'
+impure_msg = '[impure shell](bold fg:red bg:dark)'
+pure_msg = '[pure shell](bold fg:green bg:dark)'
+unknown_msg = '[unknown shell](bold fg:yellow bg:dark)'
+format = ' ❄️ $state \($name\) '
 
 [env_var.VUE_APP_HOSPITAL]
-symbol = "󰋡"
-style = "fg:#769ff0 bg:#212736"
-format = '[ 󰋡 $env_value ]($style)'
-
-[fill]
-symbol = " "
+format = '󰋡 $env_value'
