@@ -5,6 +5,9 @@ return {
 		ss.setup({
 			multiplexer_integration = 'wezterm',
 			at_edge = 'stop',
+			on_enter = function()
+				require('tint').refresh()
+			end,
 		})
 		vim.keymap.set('n', '<C-h>', ss.move_cursor_left)
 		vim.keymap.set('n', '<C-j>', ss.move_cursor_down)
