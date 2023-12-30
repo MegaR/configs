@@ -1,4 +1,5 @@
 format = """
+$hostname\
 [ \
 $directory \
 ](fg:textLight bg:light)\
@@ -46,6 +47,10 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
+
+[hostname]
+ssh_only = true
+format = "[ $hostname ](bg:#458588)[\ue0b0](bg:light fg:#458588)"
 
 [git_branch]
 symbol = ""
