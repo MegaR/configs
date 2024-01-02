@@ -204,7 +204,7 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sF', function() require('telescope.builtin').lsp_document_symbols({ symbols = {'function', 'method'} }) end, { desc = '[S]earch [F]unctions' })
+vim.keymap.set('n', '<leader>ss', function() require('telescope.builtin').lsp_document_symbols(--[[ { symbols = {'function', 'method'} } ]]) end, { desc = '[S]earch [S]ymbols' })
 
 vim.keymap.set('n', '<leader>f', ":Neotree toggle<cr>", { desc = 'Neotree' })
 
