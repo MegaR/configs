@@ -7,3 +7,4 @@ tmux-*.log
 !/home-manager
 !/.wezterm.lua
 !/nix
+!/.bashrc
