@@ -63,7 +63,7 @@ format = ' $symbol $branch '
 truncation_length = 15
 
 [git_status]
-format = '$all_status$ahead_behind'
+format = '$all_status$ahead_behind '
 
 [nodejs]
 symbol = ""
@@ -92,4 +92,4 @@ unknown_msg = '[unknown shell](bold fg:yellow bg:dark)'
 format = ' ❄️ $state \($name\) '
 
 [env_var.VUE_APP_HOSPITAL]
-format = '󰋡 $env_value'
+format = ' 󰋡 $env_value '
