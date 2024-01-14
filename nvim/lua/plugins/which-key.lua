@@ -42,6 +42,12 @@ return {
 		}, { prefix = "<leader>" })
 
 		wk.register({
+			h = {
+				name = "Harpoon",
+			},
+		}, { prefix = "<leader>" })
+
+		wk.register({
 			g = {
 				q = {
 					"Format motion",
