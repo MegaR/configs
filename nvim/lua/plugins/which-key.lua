@@ -40,5 +40,13 @@ return {
 				name = "Package",
 			},
 		}, { prefix = "<leader>" })
+
+		wk.register({
+			g = {
+				q = {
+					"Format motion",
+				}
+			}
+		})
 	end
 }
