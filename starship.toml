@@ -15,15 +15,16 @@ $nix_shell\
 ${env_var.VUE_APP_HOSPITAL}\
 ](fg:textMedium bg:dark)\
 [\ue0b0](fg:dark)\
-\
-$fill\
-\
-[\ue0b2](fg:dark)\
-[$nodejs\
-$bun\
-$rust\
-$php](fg:textMedium bg:dark)\
 \n$character"""
+
+# \
+# $fill\
+# \
+# [\ue0b2](fg:dark)\
+# [$nodejs\
+# $bun\
+# $rust\
+# $php](fg:textMedium bg:dark)\
 
 palette = 'gruvbox'
 [palettes.gruvbox]
