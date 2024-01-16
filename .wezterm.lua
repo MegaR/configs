@@ -19,6 +19,7 @@ config.macos_window_background_blur = 10
 
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
+config.max_fps = 120
 -- config.enable_scroll_bar = true
 config.default_domain = 'WSL:Ubuntu-20.04'
 
