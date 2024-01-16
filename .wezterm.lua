@@ -15,6 +15,7 @@ config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss
 -- config.color_scheme = 'Catppuccin Mocha'
 config.color_scheme = 'Gruvbox Dark (Gogh)'
 config.window_background_opacity = 0.9
+config.macos_window_background_blur = 10
 
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
