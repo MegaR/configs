@@ -27,6 +27,7 @@
     neovim
     ripgrep
     fzf
+    imgcat
 
     kubectl
     helm
