@@ -28,6 +28,7 @@
     ripgrep
     fzf
     imgcat
+    gum
 
     kubectl
     helm
