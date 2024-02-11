@@ -45,6 +45,7 @@
     nodePackages.typescript
     bun
     ((pkgs.yarn.override { nodejs = null; }).overrideAttrs (oldAttrs: { meta.platforms = nodejs.meta.platforms; }))
+    luajitPackages.luarocks
 
     zip
     git
