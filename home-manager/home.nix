@@ -29,6 +29,7 @@
     fzf
     imgcat
     gum
+    yt-dlp
 
     kubectl
     helm
