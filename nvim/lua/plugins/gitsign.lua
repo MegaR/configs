@@ -26,6 +26,7 @@ return {
 			vim.keymap.set('n', '<leader>gb', require('gitsigns').toggle_current_line_blame,
 				{ buffer = bufnr, desc = 'git [b]lame' })
 			vim.keymap.set('n', '<leader>gB', ':GBrowse', { buffer = bufnr, desc = '[B]rowse file' })
+			vim.keymap.set('n', '<leader>gm', ":Git mergetool<cr>", { desc = '[M]ergetool' })
 		end,
 	},
 }
