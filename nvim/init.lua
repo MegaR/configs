@@ -359,14 +359,14 @@ local servers = {
       telemetry = { enable = false },
     },
   },
-  eslint_d = {},
   docker_compose_language_service = {},
   dockerls = {},
-  nil_ls = {},
-  prettierd = {},
-  pylint = {},
-  stylua = {},
-  isort = {},
+  -- eslint_d = {},
+  -- nil_ls = {},
+  -- prettierd = {},
+  -- pylint = {},
+  -- stylua = {},
+  -- isort = {},
 }
 
 -- Setup neovim lua configuration
