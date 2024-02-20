@@ -30,6 +30,7 @@
     imgcat
     gum
     yt-dlp
+    jq
 
     kubectl
     helm
