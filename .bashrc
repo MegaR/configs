@@ -3,6 +3,13 @@ eval "$(zoxide init --cmd cd bash)"
 
 bind 'set completion-ignore-case on'
 alias lg='lazygit'
+alias ls='eza --icons=always'
+alias ll='eza -alh --icons=always'
+alias tree='eza --tree --icons=always'
+
+export BAT_STYLE="auto"
+alias less='bat'
+alias cat='bat -pp'
 
 if command -v fzf-share >/dev/null; then
   source "$(fzf-share)/key-bindings.bash"

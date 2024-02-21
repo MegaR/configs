@@ -31,6 +31,8 @@
     gum
     yt-dlp
     jq
+    eza
+    bat
 
     kubectl
     helm
