@@ -136,6 +136,11 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
+-- sort diagnostics
+vim.diagnostic.config({
+  severity_sort = true,
+})
+
 -- set diagnostic icons
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
