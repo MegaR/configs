@@ -65,10 +65,10 @@ config.keys = {
   {key = 'k', mods = 'ALT|SHIFT', action = wezterm.action.AdjustPaneSize {"Up", 1}},
   {key = 'l', mods = 'ALT|SHIFT', action = wezterm.action.AdjustPaneSize {"Right", 1}},
 
-  bind_if(is_outside_vim, 'h', 'CTRL', wezterm.action.ActivatePaneDirection('Left')),
-  bind_if(is_outside_vim, 'j', 'CTRL', wezterm.action.ActivatePaneDirection('Down')),
-  bind_if(is_outside_vim, 'k', 'CTRL', wezterm.action.ActivatePaneDirection('Up')),
-  bind_if(is_outside_vim, 'l', 'CTRL', wezterm.action.ActivatePaneDirection('Right')),
+  bind_if(is_outside_vim, 'h', 'CTRL|SHIFT', wezterm.action.ActivatePaneDirection('Left')),
+  bind_if(is_outside_vim, 'j', 'CTRL|SHIFT', wezterm.action.ActivatePaneDirection('Down')),
+  bind_if(is_outside_vim, 'k', 'CTRL|SHIFT', wezterm.action.ActivatePaneDirection('Up')),
+  bind_if(is_outside_vim, 'l', 'CTRL|SHIFT', wezterm.action.ActivatePaneDirection('Right')),
 
   {key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.SpawnTab "CurrentPaneDomain"},
   {key = 'q', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentPane {confirm = false}},
