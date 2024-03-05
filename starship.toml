@@ -29,7 +29,8 @@ ${env_var.VUE_APP_HOSPITAL}\
 palette = 'gruvbox'
 [palettes.gruvbox]
 background = "#282828"
-light = "#d65d0e"
+# light = "#d65d0e"
+light = "#076678"
 medium = "#665c54"
 dark = "#3c3836"
 textlight = "#fbf1c7"
