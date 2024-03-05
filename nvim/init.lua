@@ -138,6 +138,7 @@ vim.o.shiftwidth = 4
 
 -- sort diagnostics
 vim.diagnostic.config({
+  virtual_text = false,
   severity_sort = true,
 })
 

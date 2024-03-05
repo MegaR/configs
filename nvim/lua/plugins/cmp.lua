@@ -56,7 +56,6 @@ return {
 			},
 			sources = {
 				{ name = 'nvim_lsp_signature_help' },
-				{ name = 'copilot' },
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
 				{ name = 'path' },
@@ -96,7 +95,6 @@ return {
 						Event = "",
 						Operator = "󰆕",
 						TypeParameter = "",
-						Copilot = "",
 					},
 				}),
 			},
