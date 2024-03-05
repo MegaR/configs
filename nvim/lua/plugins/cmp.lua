@@ -43,10 +43,6 @@ return {
 				['<C-y>'] = cmp.mapping.confirm { select = true },
 				['<C-e>'] = cmp.mapping.abort(),
 				['<C-Space>'] = cmp.mapping.complete {},
-				['<CR>'] = cmp.mapping.confirm {
-					behavior = cmp.ConfirmBehavior.Replace,
-					select = true,
-				},
 				['<C-l>'] = cmp.mapping(function()
 					if luasnip.expand_or_locally_jumpable() then
 					    luasnip.expand_or_jump()
