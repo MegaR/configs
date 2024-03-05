@@ -21,7 +21,10 @@ config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
 config.max_fps = 120
 -- config.enable_scroll_bar = true
-config.default_domain = 'WSL:Ubuntu-20.04'
+
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  config.default_domain = 'WSL:Ubuntu-20.04'
+end
 
 config.window_decorations = 'RESIZE'
 config.window_padding = {
