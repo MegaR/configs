@@ -77,8 +77,6 @@ require('lazy').setup({
   "folke/twilight.nvim",
   'stevearc/dressing.nvim',
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
   --tmux integration
   -- { "christoomey/vim-tmux-navigator", lazy = false },
 
