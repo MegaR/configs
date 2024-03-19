@@ -13,7 +13,7 @@ _fzf_bash_completion_shell_split() {
     $_fzf_bash_completion_grep -E -o \
         -e '\|+|&+|<+|>+' \
         -e '[;(){}&\|]' \
-        -e "(\\\\.|[^\"'[:space:];(){}&\\|<>${wordbreaks}])+" \
+        -e '(\\.|\$[-[:alnum:]_*@#?$!]|(\$\{[^}]*(\}|$))|[^$\|"[:space:];(){}&<>'"'${wordbreaks}])+" \
         -e "\\\$'(\\\\.|[^'])*('|$)" \
         -e "'[^']*('|$)" \
         -e '"(\\.|\$($|[^(])|[^"$])*("|$)' \
@@ -146,9 +146,11 @@ EOF
 }
 
 _fzf_bash_completion_compspec() {
-    if [[ "$COMP_CWORD" == 0 && -z "$2" ]]; then
+    if [[ "$2" =~ .*\$(\{?)([A-Za-z0-9_]*)$ ]]; then
+        printf '%s\n' 'complete -F _fzf_bash_completion_complete_variables'
+    elif [[ "$COMP_CWORD" == 0 && -z "$2" ]]; then
         # If the command word is the empty string (completion attempted at the beginning of an empty line), any compspec defined with the -E option to complete is used.
-        complete -p -E || printf '%s\n' 'complete -F _fzf_bash_completion_complete_commands -E'
+        complete -p -E || { ! shopt -q no_empty_cmd_completion && printf '%s\n' 'complete -F _fzf_bash_completion_complete_commands -E'; }
     elif [[ "$COMP_CWORD" == 0 ]]; then
         complete -p -I || printf '%s\n' 'complete -F _fzf_bash_completion_complete_commands -I'
     else
@@ -174,32 +176,59 @@ _fzf_bash_completion_complete_commands() {
     readarray -t COMPREPLY < <(compgen -abc -- "$2")
 }
 
+_fzf_bash_completion_complete_variables() {
+    if [[ "$2" =~ .*\$(\{?)([A-Za-z0-9_]*)$ ]]; then
+        # environment variables
+        local brace="${BASH_REMATCH[1]}"
+        local filter="${BASH_REMATCH[2]}"
+        if [ -n "$filter" ]; then
+            local prefix="${2:: -${#filter}}"
+        else
+            local prefix="$2"
+        fi
+        readarray -t COMPREPLY < <(compgen -v -P "$prefix" -S "${brace:+\}}" -- "$filter")
+    fi
+}
+
 _fzf_bash_completion_loading_msg() {
     echo 'Loading matches ...'
 }
 
 fzf_bash_completion() {
+    # bail early if no_empty_cmd_completion
+    if ! [[ "$READLINE_LINE" =~ [^[:space:]] ]] && shopt -q no_empty_cmd_completion; then
+        return 1
+    fi
+
     printf '\r'
     command tput sc 2>/dev/null || echo -ne "\0337"
     printf '%s' "$(_fzf_bash_completion_loading_msg)"
     command tput rc 2>/dev/null || echo -ne "\0338"
 
-    local COMP_WORDS COMP_CWORD COMP_POINT COMP_LINE
+    local COMP_WORDS=() COMP_CWORD COMP_POINT COMP_LINE
     local COMP_TYPE=37 # % == indicates menu completion
     local line="${READLINE_LINE:0:READLINE_POINT}"
     local wordbreaks="$COMP_WORDBREAKS"
     wordbreaks="${wordbreaks//[]^]/\\&}"
     wordbreaks="${wordbreaks//[[:space:]]/}"
-    readarray -t COMP_WORDS < <(_fzf_bash_completion_parse_line <<<"$line")
+    if [[ "$line" =~ [^[:space:]] ]]; then
+        readarray -t COMP_WORDS < <(_fzf_bash_completion_parse_line <<<"$line")
+    fi
 
     if [[ ${#COMP_WORDS[@]} -gt 1 ]]; then
         _fzf_bash_completion_expand_alias "${COMP_WORDS[0]}"
     fi
 
-    COMP_LINE="$(printf '%s' "${COMP_WORDS[@]}")"
+    printf -v COMP_LINE '%s' "${COMP_WORDS[@]}"
     COMP_POINT="${#COMP_LINE}"
     # remove the ones that just spaces
-    readarray -t COMP_WORDS < <(printf %s\\n "${COMP_WORDS[@]}" | $_fzf_bash_completion_grep '[^[:space:]]')
+    local i
+    # iterate in reverse
+    for (( i = ${#COMP_WORDS[@]}-1; i >= 0; i --)); do
+        if ! [[ "${COMP_WORDS[i]}" =~ [^[:space:]] ]]; then
+            COMP_WORDS=( "${COMP_WORDS[@]:0:i}" "${COMP_WORDS[@]:i+1}" )
+        fi
+    done
     if [[ "${#COMP_WORDS[@]}" = 0 || "$line" =~ .*[[:space:]]$ ]]; then
         COMP_WORDS+=( '' )
     fi
@@ -247,22 +276,6 @@ _fzf_bash_completion_expand_alias() {
     fi
 }
 
-_fzf_bash_completion_get_results() {
-    if [[ "$2" =~ .*\$(\{?)([A-Za-z0-9_]*)$ ]]; then
-        # environment variables
-        local brace="${BASH_REMATCH[1]}"
-        local filter="${BASH_REMATCH[2]}"
-        if [ -n "$filter" ]; then
-            local prefix="${2:: -${#filter}}"
-        else
-            local prefix="$2"
-        fi
-        compgen -v -P "$prefix" -S "${brace:+\}}" -- "$filter"
-    else
-        _fzf_bash_completion_complete "$@"
-    fi
-}
-
 _fzf_bash_completion_auto_common_prefix() {
     if [ "$FZF_COMPLETION_AUTO_COMMON_PREFIX" = true ]; then
         local prefix item items prefix_len prefix_is_full input_len i
@@ -306,6 +319,10 @@ fzf_bash_completer() {
 
     # preload completions in top shell
     { complete -p -- "$1" || __load_completion "$1"; } &>/dev/null
+    local compspec
+    if ! compspec="$(_fzf_bash_completion_compspec "$@" 2>/dev/null)"; then
+        return
+    fi
 
     eval "$(
     local _fzf_sentinel1=b5a0da60-3378-4afd-ba00-bc1c269bef68
@@ -321,14 +338,14 @@ fzf_bash_completer() {
         coproc (
             (
                 count=0
-                _fzf_bash_completion_get_results "$@"
+                _fzf_bash_completion_complete "$@"
                 while (( $? == 124 )); do
                     (( count ++ ))
                     if (( count > 32 )); then
                         echo "$1: possible retry loop" >/dev/tty
                         break
                     fi
-                    _fzf_bash_completion_get_results "$@"
+                    _fzf_bash_completion_complete "$@"
                 done
                 printf '%s\n' "$_FZF_COMPLETION_SEP$_fzf_sentinel1$_fzf_sentinel2"
             ) | $_fzf_bash_completion_sed -un "/$_fzf_sentinel1$_fzf_sentinel2/q; p" \
@@ -365,13 +382,16 @@ fzf_bash_completer() {
 }
 
 _fzf_bash_completion_complete() {
-    local compgen_actions=()
-    local compspec="$(_fzf_bash_completion_compspec "$1" 2>/dev/null)"
+    local compgen_actions=() compspec=
+    if ! compspec="$(_fzf_bash_completion_compspec "$@" 2>/dev/null)"; then
+        return
+    fi
 
+    local args=( "$@" )
     eval "compspec=( $compspec )"
-    set -- "${compspec[@]}" "$@"
-    shift
-    while [ "$#" -gt 4 ]; do
+    set -- "${compspec[@]}"
+    shift # remove the complete command
+    while (( $# > 1 )); do
         case "$1" in
         -F)
             local compl_function="$2"
@@ -406,14 +426,16 @@ _fzf_bash_completion_complete() {
         esac
         shift
     done
-    shift
+    set -- "${args[@]}"
 
     COMPREPLY=()
     if [ -n "$compl_function" ]; then
         "$compl_function" "$@" >/dev/null
         if [ "$?" = 124 ]; then
-            local newcompspec="$(_fzf_bash_completion_compspec "$1" 2>/dev/null)"
-            if [ "$newcompspec" != "$compspec" ]; then
+            local newcompspec
+            if ! newcompspec="$(_fzf_bash_completion_compspec "$@" 2>/dev/null)"; then
+                return
+            elif [ "$newcompspec" != "$compspec" ]; then
                 return 124
             fi
             "$compl_function" "$@" >/dev/null
