@@ -52,6 +52,8 @@
 
     zip
     git
+    gh
+    gh-dash
 
     openssl
     gcc
