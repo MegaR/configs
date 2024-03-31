@@ -43,6 +43,9 @@
     starship
     tmux
     zoxide
+    gh
+    gh-dash
+    tig
 
     nodejs_20
     nodePackages.typescript
@@ -52,8 +55,6 @@
 
     zip
     git
-    gh
-    gh-dash
 
     openssl
     gcc
