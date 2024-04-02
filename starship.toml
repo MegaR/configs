@@ -13,6 +13,7 @@ $git_status\
 [\
 $nix_shell\
 ${env_var.VUE_APP_HOSPITAL}\
+${env_var.ECONSULT}\
 ](fg:textMedium bg:dark)\
 [\ue0b0](fg:dark)\
 \n$character"""
@@ -95,3 +96,6 @@ format = ' ❄️ $state \($name\) '
 
 [env_var.VUE_APP_HOSPITAL]
 format = ' 󰋡 $env_value '
+
+[env_var.ECONSULT]
+format = '󰩂 e-consult '
