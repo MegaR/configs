@@ -23,3 +23,6 @@ alias tree='eza --tree --icons=always'
 alias less='bat'
 alias cat='bat -pp'
 
+if command -v git >/dev/null; then
+	git config --global rerere.enabled true
+fi
