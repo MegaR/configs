@@ -1,14 +1,22 @@
 return {
-	'MegaR/smart-splits.nvim',
+	'mrjones2014/smart-splits.nvim',
 	config = function()
 		local ss = require('smart-splits')
-		ss.setup({
+		local opts = {
 			multiplexer_integration = 'wezterm',
 			at_edge = 'stop',
 			on_enter = function()
 				require('tint').refresh()
 			end,
-		})
+		}
+
+		local utils = require('smart-splits.mux.utils')
+		if utils.are_we_wezterm() and utils.is_WSL() then
+			opts["wezterm_cli_path"] = "wezterm.exe"
+		end
+
+		ss.setup(opts)
+
 		vim.keymap.set('n', '<C-S-h>', ss.move_cursor_left)
 		vim.keymap.set('n', '<C-S-j>', ss.move_cursor_down)
 		vim.keymap.set('n', '<C-S-k>', ss.move_cursor_up)
