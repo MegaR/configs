@@ -8,4 +8,6 @@ tmux-*.log
 !/.wezterm.lua
 !/nix
 !/.bashrc
+!/.zshrc
 !/fzf-bash-completion.sh
+!/.luacheckrc
