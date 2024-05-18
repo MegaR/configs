@@ -1,7 +1,11 @@
 return {
-	'morhetz/gruvbox',
-	config = function()
-		vim.g.gruvbox_transparent_bg = 1
-		vim.cmd.colorscheme 'gruvbox'
-	end,
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
+    config = function()
+	require("gruvbox").setup({
+	    transparent_mode = true,
+	})
+	vim.o.background = "dark"
+	vim.cmd("colorscheme gruvbox")
+    end
 }
