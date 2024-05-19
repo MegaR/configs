@@ -6,6 +6,7 @@ tmux-*.log
 !/starship.toml
 !/home-manager
 !/.wezterm.lua
+!/wezterm.sh
 !/nix
 !/.bashrc
 !/.zshrc
