@@ -67,6 +67,17 @@
   local gruvbox_fg3="#bdae93"
   local gruvbox_fg4="#a89984"
 
+  function prompt_env() {
+    local prompt=''
+    if [[ -v VUE_APP_HOSPITAL ]]; then
+      prompt="󰋡 $VUE_APP_HOSPITAL"
+    fi
+    if [[ -v ECONSULT ]]; then
+      prompt="$prompt 󰩂 e-consult"
+    fi
+    p10k segment -t "$prompt" -f "#fbf1c7"
+  }
+
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
@@ -87,6 +98,8 @@
     # virtualenv              # python virtual environment
     # context                 # user@host
     # time                    # current time
+    nix_shell
+    env
     # =========================[ Line #2 ]=========================
     newline                   # \n
   )
