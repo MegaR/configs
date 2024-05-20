@@ -1,3 +1,8 @@
+# P10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -10,13 +15,15 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Zsh plugins
+# # Zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
 
-# Add snippets
+# # Add snippets
 # Use zi ice as'completion' to directly add single file completion snippets
 # Use zi ice svn if a plugin/snippet requires an entire subdirectory
 zinit snippet OMZP::git
@@ -52,6 +59,8 @@ zinit cdreplay -q
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # History
 HISTSIZE=5000
@@ -104,5 +113,8 @@ source "${HOME}/.config/wezterm.sh"
 # Tools
 git config --global rerere.enabled true
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
+
+# p10k
+[[ ! -f ~/.config/p10k.zsh ]] || source ~/.config/p10k.zsh
