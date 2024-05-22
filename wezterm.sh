@@ -433,15 +433,7 @@ fi
 # associated with the current terminal pane.
 # It requires the `base64` utility to be available in the path.
 __wezterm_set_user_var() {
-  if hash base64 2>/dev/null ; then
-    if [[ -z "${TMUX}" ]] ; then
-      printf "\033]1337;SetUserVar=%s=%s\007" "$1" `echo -n "$2" | base64`
-    else
-      # <https://github.com/tmux/tmux/wiki/FAQ#what-is-the-passthrough-escape-sequence-and-how-do-i-use-it>
-      # Note that you ALSO need to add "set -g allow-passthrough on" to your tmux.conf
-      printf "\033Ptmux;\033\033]1337;SetUserVar=%s=%s\007\033\\" "$1" `echo -n "$2" | base64`
-    fi
-  fi
+  printf "\033]1337;SetUserVar=%s=%s\007" "$1" `echo -n "$2" | base64`
 }
 
 # This function emits an OSC 7 sequence to inform the terminal
@@ -526,32 +518,26 @@ __wezterm_user_vars_preexec() {
 # Register the various functions; take care to perform osc7 after
 # the semantic zones as we don't want to perturb the last command
 # status before we've had a chance to report it to the terminal
-if [[ -z "${WEZTERM_SHELL_SKIP_SEMANTIC_ZONES}" ]]; then
-  if [[ -n "$BLE_VERSION" ]]; then
-    blehook PRECMD+=__wezterm_semantic_precmd
-    blehook PREEXEC+=__wezterm_semantic_preexec
-  else
-    precmd_functions+=(__wezterm_semantic_precmd)
-    preexec_functions+=(__wezterm_semantic_preexec)
-  fi
-fi
+# if [[ -n "$BLE_VERSION" ]]; then
+#   blehook PRECMD+=__wezterm_semantic_precmd
+#   blehook PREEXEC+=__wezterm_semantic_preexec
+# else
+#   precmd_functions+=(__wezterm_semantic_precmd)
+#   preexec_functions+=(__wezterm_semantic_preexec)
+# fi
 
-if [[ -z "${WEZTERM_SHELL_SKIP_USER_VARS}" ]]; then
-  if [[ -n "$BLE_VERSION" ]]; then
-    blehook PRECMD+=__wezterm_user_vars_precmd
-    blehook PREEXEC+=__wezterm_user_vars_preexec
-  else
-    precmd_functions+=(__wezterm_user_vars_precmd)
-    preexec_functions+=(__wezterm_user_vars_preexec)
-  fi
-fi
+# if [[ -n "$BLE_VERSION" ]]; then
+#   blehook PRECMD+=__wezterm_user_vars_precmd
+#   blehook PREEXEC+=__wezterm_user_vars_preexec
+# else
+#   precmd_functions+=(__wezterm_user_vars_precmd)
+#   preexec_functions+=(__wezterm_user_vars_preexec)
+# fi
 
-if [[ -z "${WEZTERM_SHELL_SKIP_CWD}" ]] ; then
-  if [[ -n "$BLE_VERSION" ]]; then
-    blehook PRECMD+=__wezterm_osc7
-  else
-    precmd_functions+=(__wezterm_osc7)
-  fi
+if [[ -n "$BLE_VERSION" ]]; then
+  blehook PRECMD+=__wezterm_osc7
+else
+  precmd_functions+=(__wezterm_osc7)
 fi
 
 true

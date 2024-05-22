@@ -107,9 +107,6 @@ alias cat='bat -pp'
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# Source
-source "${HOME}/.config/wezterm.sh"
-
 # Tools
 git config --global rerere.enabled true
 eval "$(zoxide init --cmd cd zsh)"
@@ -118,3 +115,6 @@ eval "$(fzf --zsh)"
 
 # p10k
 [[ ! -f ~/.config/p10k.zsh ]] || source ~/.config/p10k.zsh
+
+# Wezterm
+source "${HOME}/.config/wezterm.sh"
