@@ -9,7 +9,7 @@ end
 -- config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font = wezterm.font 'MonaspiceNe NF'
 -- config.font = wezterm.font 'MonaspiceKr NF'
-config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "calt", "dlig" }
+config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "ss09", "calt", "dlig", "liga" }
 
 -- For example, changing the color scheme:
 -- config.color_scheme = 'Catppuccin Mocha'
