@@ -7,5 +7,6 @@ return {
         require('mini.surround').setup {}
         require('mini.ai').setup {}
         require('mini.comment').setup {}
+        require('mini.animate').setup {}
     end,
 }
