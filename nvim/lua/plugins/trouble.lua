@@ -6,7 +6,8 @@ return {
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
 	},
-	config = {
-		vim.keymap.set('n', '<leader>q', function() require("trouble").toggle() end, { desc = 'Open diagnostics list' })
-	}
+	config = function ()
+		local trouble = require("trouble")
+		vim.keymap.set('n', '<leader>q', function() trouble.toggle("diagnostics") end, { desc = 'Open diagnostics list' })
+	end,
 }
