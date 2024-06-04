@@ -1,6 +1,6 @@
 return {
-    'UtkarshVerma/molokai.nvim',
+    'shaunsingh/nord.nvim',
     config = function()
-        vim.cmd 'colorscheme molokai'
+        vim.cmd 'colorscheme nord'
     end,
 }

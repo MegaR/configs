@@ -85,6 +85,24 @@
   molokai_info="#6796e6"
   molokai_hint="#b267e6"
 
+  nord_black="#2E3440"
+  nord_dark_gray="#3B4252"
+  nord_gray="#434C5E"
+  nord_light_gray="#4C566A"
+  nord_light_gray_bright="#616E88"
+  nord_darkest_white="#D8DEE9"
+  nord_darker_white="#E5E9F0"
+  nord_white="#ECEFF4"
+  nord_teal="#8FBCBB"
+  nord_off_blue="#88C0D0"
+  nord_glacier="#81A1C1"
+  nord_blue="#5E81AC"
+  nord_red="#BF616A"
+  nord_orange="#D08770"
+  nord_yellow="#EBCB8B"
+  nord_green="#A3BE8C"
+  nord_purple="#B48EAD"
+
   function prompt_env() {
     local prompt=''
     if [[ -v VUE_APP_HOSPITAL ]]; then
@@ -93,7 +111,7 @@
     if [[ -v ECONSULT ]]; then
       prompt="$prompt 󰩂 e-consult"
     fi
-    p10k segment -t "$prompt" -f "$molokai_fg"
+    p10k segment -t "$prompt" -f "$nord_yellow"
   }
 
   # Left prompt segments.
@@ -136,13 +154,13 @@
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # Shorten dir
-  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_with_package_name
-  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=20
+  # typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_with_package_name
+  # typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=20
 
   # Magenta prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$molokai_blue
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$nord_glacier
   # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=$molokai_red
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=$nord_red
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='╰❯'
   # Prompt symbol in command vi mode.
@@ -153,18 +171,18 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=false
 
   # Grey Python Virtual Environment.
-  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$molokai_fg
+  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$nord_glacier
   # Don't show Python version.
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
 
   # Blue current directory.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$molokai_blue
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$nord_glacier
 
   # Context format when root: user@host. The first part white, the rest grey.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$molokai_fg}%n%f%F{$molokai_fg_gutter}@%m%f"
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$nord_white}%n%f%F{$nord_gray}@%m%f"
   # Context format when not root: user@host. The whole thing grey.
-  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE="%F{$molokai_fg}%n@%m%f"
+  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE="%F{$nord_glacier}%n@%m%f"
   # Don't show context unless root or in SSH.
   typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_CONTENT_EXPANSION=
 
@@ -175,10 +193,10 @@
   # Duration format: 1d 2h 3m 4s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
   # Yellow previous command duration.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$molokai_yellow
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$nord_yellow
 
   # Grey Git prompt. This makes stale prompts indistinguishable from up-to-date ones.
-  typeset -g POWERLEVEL9K_VCS_FOREGROUND=$molokai_hint
+  typeset -g POWERLEVEL9K_VCS_FOREGROUND=$nord_purple
 
   # Disable async loading indicator to make directories that aren't Git repositories
   # indistinguishable from large Git repositories without known state.
@@ -189,7 +207,7 @@
   typeset -g POWERLEVEL9K_VCS_MAX_SYNC_LATENCY_SECONDS=0
 
   # Cyan ahead/behind arrows.
-  typeset -g POWERLEVEL9K_VCS_{INCOMING,OUTGOING}_CHANGESFORMAT_FOREGROUND=$molokai_blue
+  typeset -g POWERLEVEL9K_VCS_{INCOMING,OUTGOING}_CHANGESFORMAT_FOREGROUND=$nord_glacier
   # Don't show remote branch, current tag or stashes.
   typeset -g POWERLEVEL9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind)
   # Don't show the branch icon.
@@ -210,7 +228,7 @@
   typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION='${${${P9K_CONTENT/⇣* :⇡/⇣⇡}// }//:/ }'
 
   # Grey current time.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=$molokai_fg_gutter
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=$nord_gray
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
   # If set to true, time will update when you hit enter. This way prompts for the past

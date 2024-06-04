@@ -398,24 +398,5 @@ mason_lspconfig.setup_handlers {
   end
 }
 
--- this probably does nothing
--- require("catppuccin").setup({
---   flavour = 'mocha',
---   dim_inactive = {
---     enabled = true, -- dims the background color of inactive window
---     shade = "dark",
---     percentage = 1, -- percentage of the shade to apply to the inactive window
---   },
---
---   integrations = {
---     cmp = true,
---     gitsigns = true,
---     nvimtree = true,
---     treesitter = true,
---     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
---   },
--- })
-
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
