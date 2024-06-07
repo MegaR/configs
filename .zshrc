@@ -95,6 +95,7 @@ zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 # Aliases
 alias lg='lazygit'
+alias nix-shell='nix-shell --run zsh'
 
 alias ls='eza --icons=always'
 alias ll='eza -alh --icons=always'
