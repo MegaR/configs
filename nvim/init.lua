@@ -198,8 +198,8 @@ pcall(require('telescope').load_extension, 'fzf')
 pcall(require("telescope").load_extension "file_browser")
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>?', function() require('telescope.builtin').oldfiles({only_cwd = true}) end, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', function() require('telescope.builtin').buffers({sort_lastused = true}) end, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find,
   { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
