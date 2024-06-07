@@ -8,7 +8,8 @@ return {
         require('mini.ai').setup {}
         require('mini.comment').setup {}
         require('mini.animate').setup {
-            open = { enable = false }
+            open = { enable = false },
+            resize = { enable = false },
         }
     end,
 }
