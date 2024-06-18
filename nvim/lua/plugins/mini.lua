@@ -3,7 +3,11 @@ return {
     version = '*',
     config = function()
         require('mini.splitjoin').setup {}
-        require('mini.jump').setup {}
+        require('mini.jump').setup {
+            delay = {
+                highlight = 1000000,
+            }
+        }
         require('mini.surround').setup {}
         require('mini.ai').setup {}
         require('mini.comment').setup {}
