@@ -8,6 +8,7 @@ return {
 	},
 	config = function ()
 		local trouble = require("trouble")
-		vim.keymap.set('n', '<leader>q', function() trouble.toggle("diagnostics") end, { desc = 'Open diagnostics list' })
+		vim.keymap.set('n', '<leader>q', function() trouble.toggle("diagnostics") end, { desc = 'Toggle diagnostics list' })
+		vim.keymap.set('n', '<leader>xq', function() trouble.toggle("quicklist") end, { desc = 'Toggle quicklist' })
 	end,
 }

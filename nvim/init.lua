@@ -167,54 +167,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
-  defaults = {
-    -- sorting_strategy = "ascending",
-    file_ignore_patterns = { "node%_modules/.*" },
-    pickers = {
-      -- find_files = {
-      -- theme = "dropdown",
-      -- },
-    },
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-  extensions = {
-    file_browser = {
-      auto_depth = true,
-    },
-  },
-}
-
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
--- Enable file browser extension
-pcall(require("telescope").load_extension "file_browser")
-
--- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', function()
-  require('telescope.builtin').oldfiles({only_cwd = true})
-end, { desc = '[?] Find recently opened files' })
-
-vim.keymap.set('n', '<leader><space>', function()
-  require('telescope.builtin').buffers({sort_lastused = true})
-end, { desc = '[ ] Find existing buffers' })
-
-vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
-
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>ss', function() require('telescope.builtin').lsp_document_symbols(--[[ { symbols = {'function', 'method'} } ]]) end, { desc = '[S]earch [S]ymbols' })
 
 vim.keymap.set('n', '<leader>f', ":Neotree toggle<cr>", { desc = 'Neotree' })
 
@@ -237,7 +189,7 @@ vim.keymap.set('n', '<c-x>', ':bd<cr>')
 ---@diagnostic disable-next-line: missing-fields
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'yaml', 'tsx', 'typescript', 'vimdoc', 'vim', 'php' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'yaml', 'tsx', 'typescript', 'vue', 'vimdoc', 'vim', 'php' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
