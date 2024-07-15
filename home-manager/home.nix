@@ -49,12 +49,16 @@
 
     nodejs_20
     nodePackages.typescript
+    nodePackages.prettier
     bun
     ((pkgs.yarn.override { nodejs = null; }).overrideAttrs (oldAttrs: { meta.platforms = nodejs.meta.platforms; }))
+    lua
     luajitPackages.luarocks
 
     zip
     git
+    isort
+    black
 
     openssl
     gcc
