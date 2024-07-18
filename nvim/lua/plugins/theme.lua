@@ -1,6 +1,6 @@
 return {
-    'shaunsingh/nord.nvim',
+    'Shatur/neovim-ayu',
     config = function()
-        vim.cmd 'colorscheme nord'
+        vim.cmd 'colorscheme ayu-mirage'
     end,
 }
