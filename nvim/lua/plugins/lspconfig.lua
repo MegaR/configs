@@ -25,7 +25,7 @@ return {
         --  This function gets run when an LSP connects to a particular buffer.
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-            callback = function(event, bufnr)
+            callback = function(_, bufnr)
                 local nmap = function(keys, func, desc)
                     if desc then
                         desc = 'LSP: ' .. desc
@@ -34,7 +34,7 @@ return {
                     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
                 end
 
-                nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+                nmap('<leader>cr', vim.lsp.buf.rename, '[R]ename')
                 nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
                 -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
