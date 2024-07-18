@@ -18,7 +18,14 @@ config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss
 -- config.color_scheme = 'Gruvbox Dark (Gogh)'
 -- config.color_scheme = 'nord'
 config.color_scheme = 'Ayu Mirage'
--- config.window_background_opacity = 0.95
+
+config.window_background_gradient = {
+  colors = { '#1F2430', '#0A0E14' },
+  -- Specifices a Linear gradient starting in the top left corner.
+  orientation = { Linear = { angle = -45.0 } },
+}
+
+config.window_background_opacity = 0.95
 config.macos_window_background_blur = 10
 config.inactive_pane_hsb = {
   saturation = 0.9,
