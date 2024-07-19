@@ -25,7 +25,7 @@ config.window_background_gradient = {
   orientation = { Linear = { angle = -45.0 } },
 }
 
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.99
 config.macos_window_background_blur = 10
 config.inactive_pane_hsb = {
   saturation = 0.9,
