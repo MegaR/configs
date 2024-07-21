@@ -19,6 +19,32 @@ config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss
 -- config.color_scheme = 'nord'
 config.color_scheme = 'Ayu Mirage'
 
+config.colors = {
+  tab_bar = {
+    background = '#1F2430',
+    active_tab = {
+      bg_color = '#33415E',
+      fg_color = '#D8DEE9',
+    },
+    inactive_tab = {
+      bg_color = '#1F2430',
+      fg_color = '#D8DEE9',
+    },
+    inactive_tab_hover = {
+      bg_color = '#232834',
+      fg_color = '#D8DEE9',
+    },
+    new_tab = {
+      bg_color = '#1F2430',
+      fg_color = '#D8DEE9',
+    },
+    new_tab_hover = {
+      bg_color = '#232834',
+      fg_color = '#D8DEE9',
+    },
+  }
+}
+
 config.window_background_gradient = {
   colors = { '#1F2430', '#0A0E14' },
   -- Specifices a Linear gradient starting in the top left corner.
