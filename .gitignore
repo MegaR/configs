@@ -13,3 +13,5 @@ tmux-*.log
 !/fzf-bash-completion.sh
 !/.luacheckrc
 !/ohmyposh
+!/lazygit
+/lazygit/state.yml
