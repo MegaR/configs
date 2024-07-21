@@ -12,4 +12,4 @@ tmux-*.log
 !/.zshrc
 !/fzf-bash-completion.sh
 !/.luacheckrc
-!/p10k.zsh
+!/ohmyposh

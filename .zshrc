@@ -1,8 +1,3 @@
-# P10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -20,8 +15,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
 
 # # Add snippets
 # Use zi ice as'completion' to directly add single file completion snippets
@@ -119,8 +112,9 @@ eval "$(zoxide init --cmd cd zsh)"
 # eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 
-# p10k
-[[ ! -f ~/.config/p10k.zsh ]] || source ~/.config/p10k.zsh
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+    eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.yaml)"
+fi
 
 # Wezterm
 source "${HOME}/.config/wezterm.sh"

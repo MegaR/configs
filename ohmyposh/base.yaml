@@ -1,0 +1,113 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 2
+final_space: true
+console_title_template: "{{ .Folder }}"
+blocks:
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: path
+        style: plain
+        background: transparent
+        foreground: p:path
+        template: '{{.Path}}'
+        properties:
+          style: agnoster_full
+          home_icon: ' '
+          gitdir_format: ' %s'
+
+      - type: git
+        style: plain
+        foreground: p:git
+        background: tranparent
+        template: ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+        properties:
+          commit_icon: '@'
+          fetch_status: true
+
+  - type: prompt
+    alignment: right
+    overflow: hidden
+    segments:
+      - type: executiontime
+        style: plain
+        foreground: p:warn
+        background: transparent
+        template: ' {{ .FormattedMs }}'
+        properties:
+          threshold: 5000
+      - type: text
+        style: plain
+        foreground: p:info
+        background: transparent
+        templates:
+          - '{{ if .Env.VUE_APP_HOSPITAL }} 󰋡 {{ .Env.VUE_APP_HOSPITAL }}{{ end }}'
+          - '{{ if .Env.ECONSULT }} 󰩂 e-consult{{ end }}'
+
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: 'text'
+        style: 'plain'
+        foreground_templates:
+          - "{{if gt .Code 0}}p:error{{end}}"
+          - "{{if eq .Code 0}}p:cursor{{end}}"
+        background: transparent
+        template: '❯'
+transient_prompt:
+  foreground_templates:
+    - "{{if gt .Code 0}}p:error{{end}}"
+    - "{{if eq .Code 0}}p:cursor{{end}}"
+  background: transparent
+  template: '❯ '
+palette:
+  path: '#5CCFE6'
+  error: '#FF3333'
+  cursor: '#D3B8F9'
+  git: '#BAE67E'
+  warn: '#FFA759'
+  info: '#FFD580'
+
+# colors.accent = '#FFCC66'
+# colors.bg = '#1F2430'
+# colors.fg = '#CBCCC6'
+# colors.ui = '#707A8C'
+#
+# colors.tag = '#5CCFE6'
+# colors.func = '#FFD580'
+# colors.entity = '#73D0FF'
+# colors.string = '#BAE67E'
+# colors.regexp = '#95E6CB'
+# colors.markup = '#F28779'
+# colors.keyword = '#FFA759'
+# colors.special = '#FFE6B3'
+# colors.comment = '#5C6773'
+# colors.constant = '#D4BFFF'
+# colors.operator = '#F29E74'
+# colors.error = '#FF3333'
+# colors.lsp_parameter = '#D3B8F9'
+#
+# colors.line = '#191E2A'
+# colors.panel_bg = '#232834'
+# colors.panel_shadow = '#141925'
+# colors.panel_border = '#101521'
+# colors.gutter_normal = '#404755'
+# colors.gutter_active = '#5F687A'
+# colors.selection_bg = '#33415E'
+# colors.selection_inactive = '#323A4C'
+# colors.selection_border = '#232A4C'
+# colors.guide_active = '#576070'
+# colors.guide_normal = '#383E4C'
+#
+# colors.vcs_added = '#A6CC70'
+# colors.vcs_modified = '#77A8D9'
+# colors.vcs_removed = '#F27983'
+#
+# colors.vcs_added_bg = '#313D37'
+# colors.vcs_removed_bg = '#3E373A'
+#
+# colors.fg_idle = '#607080'
+# colors.warning = '#FFA759'

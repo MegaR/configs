@@ -40,7 +40,7 @@
 
     lazygit
     lazydocker
-    starship
+    oh-my-posh
     tmux
     zoxide
     gh
