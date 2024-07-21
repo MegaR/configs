@@ -17,6 +17,10 @@ blocks:
           style: agnoster_full
           home_icon: ' '
           gitdir_format: ' %s'
+          mapped_locations:
+            "~/projects": " "
+            "~/funatic": "󰫳 "
+            "~/boomerweb": "󰫯 "
 
       - type: git
         style: plain
