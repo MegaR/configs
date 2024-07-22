@@ -46,7 +46,7 @@ config.colors = {
 }
 
 config.window_background_gradient = {
-  colors = { '#1F2430', '#0A0E14' },
+  colors = { '#1F2430', '#323A4C' },
   -- Specifices a Linear gradient starting in the top left corner.
   orientation = { Linear = { angle = -45.0 } },
 }
