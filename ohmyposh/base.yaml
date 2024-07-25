@@ -25,13 +25,13 @@ blocks:
           gitdir_format: ' %s'
           mapped_locations:
             "~/projects": " "
-            "~/funatic": "󰫳 "
+            "~/funatic": "󰫳"
             "~/boomerweb": "󰫯 "
 
       - type: git
         style: plain
         foreground: p:git
-        background: tranparent
+        background: transparent
         template: ' {{ .HEAD }} {{ if or (.Working.Changed) (.Staging.Changed) }} {{ end }}{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}'
         properties:
           commit_icon: '@'
@@ -39,7 +39,7 @@ blocks:
 
   - type: prompt
     alignment: right
-    overflow: hidden
+    overflow: hide
     segments:
       - type: executiontime
         style: plain
