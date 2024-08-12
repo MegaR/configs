@@ -2,11 +2,10 @@ return {
 	'rmagatti/auto-session',
 	-- lazy = true,
 	config = function()
-		---@diagnostic disable-next-line: missing-fields
 		require("auto-session").setup {
 			log_level = "error",
 			pre_save_cmds = { require("neo-tree.sources.manager").close_all },
-			bypass_session_save_file_types = { "neo-tree" },
+			bypass_session_save_file_types = { "neo-tree", "spectre" },
 			auto_save_enabled = true,
 			auto_restore_enabled = true,
 			auto_session_use_git_branch = true,
