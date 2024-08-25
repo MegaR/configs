@@ -1,7 +1,6 @@
 return {
-    'f-person/auto-dark-mode.nvim',
+    'Shatur/neovim-ayu',
     dependencies = {
-        'Shatur/neovim-ayu',
         'nvim-lualine/lualine.nvim',
     },
     config = function()
@@ -21,15 +20,5 @@ return {
         }
 
         vim.cmd 'colorscheme ayu-mirage'
-        local auto_dark_mode = require 'auto-dark-mode'
-        auto_dark_mode.setup {
-            update_interval = 1000,
-            set_dark_mode = function()
-                vim.cmd 'colorscheme ayu-mirage'
-            end,
-            set_light_mode = function()
-                vim.cmd 'colorscheme ayu-light'
-            end,
-        }
     end,
 }
