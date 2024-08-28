@@ -7,5 +7,8 @@ return {
             section_separators = '',
             theme = 'ayu',
         },
+        extensions = {
+            'oil',
+        },
     },
 }
