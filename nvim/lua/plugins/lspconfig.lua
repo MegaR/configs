@@ -90,6 +90,7 @@ return {
                     nmap('<leader>th', function()
                         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
                     end, '[T]oggle Inlay [H]ints')
+                    vim.lsp.inlay_hint.enable(true)
                 end
             end,
         })
@@ -121,6 +122,30 @@ return {
                     },
                 },
                 filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
+                settings = {
+                    javascript = {
+                        inlayHints = {
+                            includeInlayEnumMemberValueHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayParameterNameHints = 'all',
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                        },
+                    },
+                    typescript = {
+                        inlayHints = {
+                            includeInlayEnumMemberValueHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayParameterNameHints = 'all',
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                        },
+                    },
+                },
             },
             volar = {
                 init_options = {
