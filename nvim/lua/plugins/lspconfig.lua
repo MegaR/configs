@@ -84,6 +84,13 @@ return {
                         end,
                     })
                 end
+                -- The following code creates a keymap to toggle inlay hints in your
+                -- code, if the language server you are using supports them
+                if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+                    nmap('<leader>th', function()
+                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+                    end, '[T]oggle Inlay [H]ints')
+                end
             end,
         })
 
@@ -135,7 +142,6 @@ return {
             'eslint_d',
             'luacheck',
             'markdownlint',
-            'markdownlint',
             'prettierd',
             'stylua',
         })
@@ -153,7 +159,7 @@ return {
                     -- by the server configuration above. Useful when disabling
                     -- certain features of an LSP (for example, turning off formatting for tsserver)
                     server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                    require('lspconfig')[server_name].setup(server)
+                    lspconfig[server_name].setup(server)
                 end,
             },
         }
