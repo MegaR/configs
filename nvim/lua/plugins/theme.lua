@@ -2,6 +2,7 @@ return {
     'Shatur/neovim-ayu',
     dependencies = {
         'nvim-lualine/lualine.nvim',
+        'levouh/tint.nvim',
     },
     config = function()
         require('ayu').setup {
@@ -20,5 +21,6 @@ return {
         }
 
         vim.cmd 'colorscheme ayu-mirage'
+        require('tint').setup {}
     end,
 }
