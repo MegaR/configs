@@ -75,7 +75,6 @@ require('lazy').setup({
 
   'nvim-tree/nvim-web-devicons',
   "mbbill/undotree",
-  "folke/twilight.nvim",
   'stevearc/dressing.nvim',
 
   --tmux integration
