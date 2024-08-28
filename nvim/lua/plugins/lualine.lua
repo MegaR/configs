@@ -5,7 +5,7 @@ return {
             icons_enabled = true,
             component_separators = '|',
             section_separators = '',
-            theme = 'ayu',
+            theme = 'ayu_mirage',
         },
         extensions = {
             'oil',
