@@ -54,8 +54,8 @@ blocks:
         foreground: p:info
         background: transparent
         templates:
-          - '{{ if .Env.VUE_APP_HOSPITAL }} 󰋡 {{ .Env.VUE_APP_HOSPITAL }}{{ end }}'
-          - '{{ if .Env.ECONSULT }} 󰩂 e-consult{{ end }}'
+          - '{{ if .Env.VUE_APP_HOSPITAL }} 󰋡 {{ .Env.VUE_APP_HOSPITAL }} {{ end }}'
+          - '{{ if .Env.ECONSULT }}󰩂 e-consult {{ end }}'
 
   - type: prompt
     alignment: left
