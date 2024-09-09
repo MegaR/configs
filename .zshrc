@@ -107,7 +107,11 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 
 # Tools
-git config --global rerere.enabled true
+if command -v git >/dev/null; then
+	git config --global rerere.enabled true
+	git config --global diff.algorithm histogram
+fi
+
 eval "$(zoxide init --cmd cd zsh)"
 # eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
