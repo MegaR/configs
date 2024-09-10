@@ -37,6 +37,14 @@ blocks:
           commit_icon: '@'
           fetch_status: true
 
+      - type: text
+        style: plain
+        foreground: p:info
+        background: transparent
+        templates:
+          - ' {{ if .Env.VUE_APP_HOSPITAL }}󰋡 {{ .Env.VUE_APP_HOSPITAL }} {{ end }}'
+          - '{{ if .Env.ECONSULT }}󰩂 e-consult {{ end }}'
+
   - type: prompt
     alignment: right
     overflow: hide
@@ -48,14 +56,6 @@ blocks:
         template: ' {{ .FormattedMs }}'
         properties:
           threshold: 5000
-
-      - type: text
-        style: plain
-        foreground: p:info
-        background: transparent
-        templates:
-          - '{{ if .Env.VUE_APP_HOSPITAL }} 󰋡 {{ .Env.VUE_APP_HOSPITAL }} {{ end }}'
-          - '{{ if .Env.ECONSULT }}󰩂 e-consult {{ end }}'
 
   - type: prompt
     alignment: left
