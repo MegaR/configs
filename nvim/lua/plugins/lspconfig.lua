@@ -112,7 +112,7 @@ return {
             },
             docker_compose_language_service = {},
             dockerls = {},
-            tsserver = {
+            ts_ls = {
                 plugins = {
                     {
                         name = '@vue/typescript-plugin',
@@ -178,6 +178,7 @@ return {
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
+
                     -- This handles overriding only values explicitly passed
                     -- by the server configuration above. Useful when disabling
                     -- certain features of an LSP (for example, turning off formatting for tsserver)
