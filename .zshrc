@@ -3,8 +3,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-	mkdir -p "$(dirname $ZINIT_HOME)"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Source/Load zinit
@@ -34,10 +34,10 @@ zinit snippet OMZP::ssh
 
 # Custom completions
 function customCompletion () {
-	if (( ! ${+commands[$1]} )); then
-		return
-	fi
-	eval "$2 >| ~/.local/share/zinit/completions/_$1 &|"
+    if (( ! ${+commands[$1]} )); then
+        return
+    fi
+    eval "$2 >| ~/.local/share/zinit/completions/_$1 &|"
 }
 
 customCompletion "kubectl" "kubectl completion zsh"
@@ -108,8 +108,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # Tools
 if command -v git >/dev/null; then
-	git config --global rerere.enabled true
-	git config --global diff.algorithm histogram
+    git config --global rerere.enabled true
+    git config --global diff.algorithm histogram
 fi
 
 eval "$(zoxide init --cmd cd zsh)"
