@@ -60,6 +60,7 @@
     git
     isort
     black
+    tree-sitter
 
     openssl
     gcc
