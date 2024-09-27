@@ -33,6 +33,7 @@
     jq
     eza
     bat
+    xclip
 
     kubectl
     helm

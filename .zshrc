@@ -97,6 +97,9 @@ alias tree='eza --tree --icons=always'
 alias less='bat'
 alias cat='bat -pp'
 
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 # Vars
 export VISUAL=nvim
 export EDITOR="$VISUAL"
