@@ -47,6 +47,7 @@
     gh
     gh-dash
     tig
+    lastpass-cli
 
     nodejs_20
     nodePackages.typescript
