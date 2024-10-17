@@ -169,7 +169,7 @@ vim.opt.inccommand = 'split'
 
 -- sort diagnostics
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   severity_sort = true,
 })
 
