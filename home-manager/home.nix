@@ -36,7 +36,7 @@
     xclip
 
     kubectl
-    helm
+    # helm
     k9s
 
     lazygit
