@@ -103,15 +103,12 @@ return {
 
         local servers = {
             html = { filetypes = { 'html', 'twig', 'hbs' } },
-
             lua_ls = {
                 Lua = {
                     workspace = { checkThirdParty = false },
                     telemetry = { enable = false },
                 },
             },
-            docker_compose_language_service = {},
-            dockerls = {},
             ts_ls = {
                 plugins = {
                     {
@@ -153,6 +150,14 @@ return {
                     },
                 },
             },
+            docker_compose_language_service = {},
+            dockerls = {},
+            bashls = {},
+            cssls = {},
+            css_variables = {},
+            jsonls = {},
+            sqlls = {},
+            yamlls = {},
         }
 
         require('mason').setup()
