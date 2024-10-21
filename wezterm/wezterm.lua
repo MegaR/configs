@@ -14,9 +14,9 @@ config.font = wezterm.font 'Monaspace Neon'
 config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "ss09", "calt", "dlig", "liga" }
 
 function get_appearance()
-  if wezterm.gui then
-    return wezterm.gui.get_appearance()
-  end
+  -- if wezterm.gui then
+  --   return wezterm.gui.get_appearance()
+  -- end
   return 'Dark'
 end
 
