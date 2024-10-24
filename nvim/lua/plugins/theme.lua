@@ -1,26 +1,24 @@
 return {
-    'Shatur/neovim-ayu',
+    'rebelot/kanagawa.nvim',
     dependencies = {
         'nvim-lualine/lualine.nvim',
         'levouh/tint.nvim',
     },
     config = function()
-        require('ayu').setup {
-            mirage = true,
-            overrides = {
-                Normal = { bg = 'None' },
-                ColorColumn = { bg = 'None' },
-                SignColumn = { bg = 'None' },
-                Folded = { bg = 'None' },
-                FoldColumn = { bg = 'None' },
-                CursorLine = { bg = 'None' },
-                CursorColumn = { bg = 'None' },
-                WhichKeyFloat = { bg = 'None' },
-                VertSplit = { bg = 'None' },
+        require('kanagawa').setup {
+            transparent = true,
+            -- dimInactive = true,
+            colors = {
+                theme = {
+                    all = {
+                        ui = {
+                            bg_gutter = 'none',
+                        },
+                    },
+                },
             },
         }
-
-        vim.cmd 'colorscheme ayu-mirage'
+        vim.cmd 'colorscheme kanagawa'
         require('tint').setup {}
     end,
 }

@@ -13,87 +13,44 @@ config.font = wezterm.font 'Monaspace Neon'
 
 config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "ss09", "calt", "dlig", "liga" }
 
-function get_appearance()
-  -- if wezterm.gui then
-  --   return wezterm.gui.get_appearance()
-  -- end
-  return 'Dark'
-end
-
 -- For example, changing the color scheme:
 -- config.color_scheme = 'Catppuccin Mocha'
 -- config.color_scheme = 'Gruvbox Dark (Gogh)'
 -- config.color_scheme = 'nord'
-if get_appearance() == 'Dark' then
-  config.color_scheme = 'Ayu Mirage'
+-- config.color_scheme = 'Ayu Mirage'
+config.color_scheme = 'kanagawabones'
 
-  config.colors = {
-    tab_bar = {
-      background = '#1F2430',
-      active_tab = {
-        bg_color = '#607080',
-        fg_color = '#D8DEE9',
-      },
-      inactive_tab = {
-        bg_color = '#1F2430',
-        fg_color = '#D8DEE9',
-      },
-      inactive_tab_hover = {
-        bg_color = '#232834',
-        fg_color = '#D8DEE9',
-      },
-      new_tab = {
-        bg_color = '#1F2430',
-        fg_color = '#D8DEE9',
-      },
-      new_tab_hover = {
-        bg_color = '#232834',
-        fg_color = '#D8DEE9',
-      },
-    }
+config.colors = {
+  tab_bar = {
+    background = '#1F1F28',
+    active_tab = {
+      bg_color = '#2A2A37',
+      fg_color = '#DCD7BA',
+    },
+    inactive_tab = {
+      bg_color = '#1F1F28',
+      fg_color = '#DCD7BA',
+    },
+    inactive_tab_hover = {
+      bg_color = '#2A2A37',
+      fg_color = '#DCD7BA',
+    },
+    new_tab = {
+      bg_color = '#1F1F28',
+      fg_color = '#DCD7BA',
+    },
+    new_tab_hover = {
+      bg_color = '#2A2A37',
+      fg_color = '#DCD7BA',
+    },
   }
+}
 
-  config.window_background_gradient = {
-    colors = { '#1F2430', '#22252D' },
-    -- Specifices a Linear gradient starting in the top left corner.
-    orientation = { Linear = { angle = -45.0 } },
-  }
-
-else
-  config.color_scheme = 'ayu_light'
-
-  config.colors = {
-    tab_bar = {
-      background = '#FAFAFA',
-      active_tab = {
-        bg_color = '#F2AE49',
-        fg_color = '#575F66',
-      },
-      inactive_tab = {
-        bg_color = '#FAFAFA',
-        fg_color = '#575F66',
-      },
-      inactive_tab_hover = {
-        bg_color = '#E6E7E9',
-        fg_color = '#575F66',
-      },
-      new_tab = {
-        bg_color = '#FAFAFA',
-        fg_color = '#575F66',
-      },
-      new_tab_hover = {
-        bg_color = '#E6E7E9',
-        fg_color = '#575F66',
-      },
-    }
-  }
-
-  config.window_background_gradient = {
-    colors = { '#FAFAFA', '#E6E7E9' },
-    -- Specifices a Linear gradient starting in the top left corner.
-    orientation = { Linear = { angle = -45.0 } },
-  }
-end
+config.window_background_gradient = {
+  colors = { '#1F1F28', '#1a1a22' },
+  -- Specifices a Linear gradient starting in the top left corner.
+  orientation = { Linear = { angle = -45.0 } },
+}
 
 config.window_background_opacity = 0.99
 config.macos_window_background_blur = 10
