@@ -219,5 +219,9 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
+-- Tabs
+vim.keymap.set('n', '<Tab>', '<cmd>tabnext<cr>', { desc = 'Next tab', noremap = true});
+vim.keymap.set('n', '<S-Tab>', '<cmd>tabprevious<cr>', { desc = 'Previous tab', noremap = true});
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
