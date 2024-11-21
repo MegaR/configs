@@ -17,8 +17,6 @@ return {
         { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-        local mason_registry = require 'mason-registry'
-        local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. 'node_modules/@vue/language-server'
         local lspconfig = require 'lspconfig'
 
         -- [[ Configure LSP ]]
@@ -109,47 +107,35 @@ return {
                     telemetry = { enable = false },
                 },
             },
-            ts_ls = {
-                plugins = {
-                    {
-                        name = '@vue/typescript-plugin',
-                        location = vue_language_server_path,
-                        language = { 'vue' },
-                    },
-                },
-                filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
-                settings = {
-                    javascript = {
-                        inlayHints = {
-                            includeInlayEnumMemberValueHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayParameterNameHints = 'all',
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayVariableTypeHints = true,
-                        },
-                    },
-                    typescript = {
-                        inlayHints = {
-                            includeInlayEnumMemberValueHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayParameterNameHints = 'all',
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayVariableTypeHints = true,
-                        },
-                    },
-                },
-            },
-            volar = {
-                init_options = {
-                    vue = {
-                        hybridMode = false,
-                    },
-                },
-            },
+            -- ts_ls = {
+            --     plugins = {
+            --     },
+            --     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
+            --     settings = {
+            --         javascript = {
+            --             inlayHints = {
+            --                 includeInlayEnumMemberValueHints = true,
+            --                 includeInlayFunctionLikeReturnTypeHints = true,
+            --                 includeInlayFunctionParameterTypeHints = true,
+            --                 includeInlayParameterNameHints = 'all',
+            --                 includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            --                 includeInlayPropertyDeclarationTypeHints = true,
+            --                 includeInlayVariableTypeHints = true,
+            --             },
+            --         },
+            --         typescript = {
+            --             inlayHints = {
+            --                 includeInlayEnumMemberValueHints = true,
+            --                 includeInlayFunctionLikeReturnTypeHints = true,
+            --                 includeInlayFunctionParameterTypeHints = true,
+            --                 includeInlayParameterNameHints = 'all',
+            --                 includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            --                 includeInlayPropertyDeclarationTypeHints = true,
+            --                 includeInlayVariableTypeHints = true,
+            --             },
+            --         },
+            --     },
+            -- },
             docker_compose_language_service = {},
             dockerls = {},
             bashls = {},
