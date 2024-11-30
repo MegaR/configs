@@ -2,12 +2,10 @@ tmux-*.log
 
 /*
 !/nvim
-!/tmux
-!/starship.toml
 !/home-manager
-!/.wezterm.lua
 !/wezterm
 !/nix
+!/nix-darwin
 !/.bashrc
 !/.zshrc
 !/fzf-bash-completion.sh
