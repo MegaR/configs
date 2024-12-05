@@ -57,11 +57,14 @@
     lua
     luajitPackages.luarocks
 
+    unzip
     zip
     git
     isort
     black
     tree-sitter
+    php
+    php84Packages.composer
 
     openssl
     gcc

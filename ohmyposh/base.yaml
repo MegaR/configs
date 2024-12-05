@@ -25,8 +25,7 @@ blocks:
           gitdir_format: ' %s'
           mapped_locations:
             "~/projects": " "
-            "~/funatic": "󰫳"
-            "~/boomerweb": "󰫯 "
+            "~/zintouch": " "
 
       - type: git
         style: plain
@@ -36,14 +35,14 @@ blocks:
         properties:
           commit_icon: '@'
           fetch_status: true
-
-      - type: text
-        style: plain
-        foreground: p:info
-        background: transparent
-        templates:
-          - ' {{ if .Env.VUE_APP_HOSPITAL }}󰋡 {{ .Env.VUE_APP_HOSPITAL }} {{ end }}'
-          - '{{ if .Env.ECONSULT }}󰩂 e-consult {{ end }}'
+      #
+      # - type: text
+      #   style: plain
+      #   foreground: p:info
+      #   background: transparent
+      #   templates:
+      #     - ' {{ if .Env.VUE_APP_HOSPITAL }}󰋡 {{ .Env.VUE_APP_HOSPITAL }} {{ end }}'
+      #     - '{{ if .Env.ECONSULT }}󰩂 e-consult {{ end }}'
 
   - type: prompt
     alignment: right

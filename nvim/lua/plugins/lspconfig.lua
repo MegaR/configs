@@ -144,6 +144,7 @@ return {
             jsonls = {},
             sqlls = {},
             yamlls = {},
+            phpactor = {},
         }
 
         require('mason').setup()

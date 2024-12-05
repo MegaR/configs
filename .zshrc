@@ -100,6 +100,30 @@ alias cat='bat -pp'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+# functions
+export function wt() {
+    worktree=`git worktree list | cut -d ' ' -f1 | fzf -1 --query "$1"`
+    cd ${worktree}
+}
+export function wtlist() {
+    git worktree list | cut -d / -f6 | cut -d ' ' -f1
+}
+export function wtadd() {
+    cd main
+    git pull origin main
+    cd ..
+
+    git worktree add "$@" --guess-remote
+    cd $1
+    git branch --set-upstream-to=origin/$1 $1 || true
+}
+export function wtremove() {
+    worktree=`git worktree list | cut -d / -f6 | cut -d ' ' -f1 | fzf -1 --query "$1"`
+    echo "Deleting worktree $worktree"
+    git worktree remove $worktree
+    git branch -d $worktree
+}
+
 # Vars
 export VISUAL=nvim
 export EDITOR="$VISUAL"
