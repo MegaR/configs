@@ -159,6 +159,7 @@ return {
             'markdownlint',
             'prettierd',
             'stylua',
+            'pint',
         })
         require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

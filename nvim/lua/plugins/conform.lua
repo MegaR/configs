@@ -9,6 +9,7 @@ return {
                 -- Use a sub-list to run only the first available formatter
                 javascript = { 'prettierd', 'prettier', stop_after_first = true },
                 typescript = { 'prettierd', 'prettier', stop_after_first = true },
+                php = { 'pint' },
             },
         }
 
@@ -25,5 +26,12 @@ return {
             end
             require('conform').format { async = true, lsp_fallback = true, range = range }
         end, { desc = 'Format current buffer with LSP' })
+
+        vim.api.nvim_create_autocmd('BufWritePre', {
+            pattern = '*.php',
+            callback = function(args)
+                require('conform').format { bufnr = args.buf }
+            end,
+        })
     end,
 }
