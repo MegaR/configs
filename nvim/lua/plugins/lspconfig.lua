@@ -15,6 +15,11 @@ return {
 
         -- Additional lua configuration, makes nvim stuff amazing!
         { 'folke/neodev.nvim', opts = {} },
+
+        -- DAP
+        'jay-babu/mason-nvim-dap.nvim',
+        'williamboman/mason.nvim',
+        'mfussenegger/nvim-dap',
     },
     config = function()
         local lspconfig = require 'lspconfig'
@@ -149,6 +154,76 @@ return {
 
         require('mason').setup()
 
+        -- DAP
+        require('mason-nvim-dap').setup {
+            automatic_setup = {},
+            ensure_installed = { 'php' },
+            automatic_installation = true,
+            handlers = {
+                function(config)
+                    require('mason-nvim-dap').default_setup(config)
+                end,
+                php = function(config)
+                    config.configurations = {
+                        {
+                            type = 'php',
+                            request = 'launch',
+                            name = 'Listen for XDebug',
+                            port = 9003,
+                            log = true,
+                            pathMappings = {
+                                ['/var/www/html'] = vim.fn.getcwd() .. '/src',
+                            },
+                            hostname = '0.0.0.0',
+                        },
+                    }
+
+                    require('mason-nvim-dap').default_setup(config) -- don't forget this!
+                end,
+            },
+        }
+        vim.keymap.set('n', '<Leader>dc', function()
+            require('dap').continue()
+        end, { desc = 'Continue' })
+        vim.keymap.set('n', '<Leader>dj', function()
+            require('dap').step_over()
+        end, { desc = 'Step over' })
+        vim.keymap.set('n', '<Leader>dl', function()
+            require('dap').step_into()
+        end, { desc = 'Step into' })
+        vim.keymap.set('n', '<Leader>dh', function()
+            require('dap').step_out()
+        end, { desc = 'Step out' })
+        vim.keymap.set('n', '<Leader>db', function()
+            require('dap').toggle_breakpoint()
+        end, { desc = 'Toggle breakpoint' })
+        vim.keymap.set('n', '<Leader>dL', function()
+            require('dap').set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
+        end, { desc = 'Log point' })
+        vim.keymap.set('n', '<Leader>dr', function()
+            require('dap').repl.open()
+        end, { desc = 'Repl' })
+        -- vim.keymap.set('n', '<Leader>dl', function()
+        --     require('dap').run_last()
+        -- end, {desc = 'Run last'})
+        vim.keymap.set({ 'n', 'v' }, '<Leader>dH', function()
+            require('dap.ui.widgets').hover()
+        end, { desc = 'Hover' })
+        vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
+            require('dap.ui.widgets').preview()
+        end, { desc = 'Preview' })
+        vim.keymap.set('n', '<Leader>df', function()
+            local widgets = require 'dap.ui.widgets'
+            widgets.centered_float(widgets.frames)
+        end, { desc = 'Frames' })
+        vim.keymap.set('n', '<Leader>ds', function()
+            local widgets = require 'dap.ui.widgets'
+            widgets.centered_float(widgets.scopes)
+        end, { desc = 'Scopes' })
+        vim.keymap.set('n', '<Leader>dt', function()
+            require'telescope'.extensions.dap.commands{}
+        end, { desc = 'Scopes' })
+
         -- You can add other tools here that you want Mason to install
         -- for you, so that they are available from within Neovim.
         local ensure_installed = vim.tbl_keys(servers or {})
@@ -160,6 +235,7 @@ return {
             'prettierd',
             'stylua',
             'pint',
+            'php-debug-adapter',
         })
         require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

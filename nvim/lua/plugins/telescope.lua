@@ -16,6 +16,8 @@ return {
                     return vim.fn.executable 'make' == 1
                 end,
             },
+            -- DAP
+            'nvim-telescope/telescope-dap.nvim',
         },
         config = function()
             local open_with_trouble = require('trouble.sources.telescope').open
@@ -40,6 +42,7 @@ return {
             }
 
             pcall(require('telescope').load_extension, 'fzf')
+            require('telescope').load_extension('dap')
 
             -- See `:help telescope.builtin`
             vim.keymap.set('n', '<leader>?', function()

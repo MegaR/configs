@@ -11,7 +11,8 @@ return {
             { '<leader>w', group = 'Workspace' },
             { '<leader>p', group = 'Package' },
             { '<leader>h', group = 'Harpoon' },
-            { '<leader>d', group = 'Fun' },
+            { '<leader>d', group = 'Debug' },
+            { '<leader>f', group = 'Fun' },
             { 'gq', desc = 'Format motion' },
         }
     end,
