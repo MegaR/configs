@@ -12,7 +12,7 @@ return {
             { '<leader>p', group = 'Package' },
             { '<leader>h', group = 'Harpoon' },
             { '<leader>d', group = 'Debug' },
-            { '<leader>f', group = 'Fun' },
+            { '<leader>F', group = 'Fun' },
             { 'gq', desc = 'Format motion' },
         }
     end,
