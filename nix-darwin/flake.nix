@@ -12,7 +12,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
   let
-    configuration = { pkgs, config, ... }: {
+    configuration = { pkgs, config, lib, ... }: {
 
 
       # Allow closed source applications
@@ -41,9 +41,12 @@
           "wezterm"
           "microsoft-teams"
           "microsoft-outlook"
+          "microsoft-word"
+          "microsoft-excel"
           "docker"
           "parsec"
           "visual-studio-code"
+          "bruno"
         ];
         # appstore packages
         masApps = {
@@ -66,7 +69,7 @@
           pathsToLink = "/Applications";
         };
       in
-        pkgs.lib.mkForce ''
+        lib.mkForce ''
           # Set up applications.
           echo "setting up /Applications..." >&2
           rm -rf /Applications/Nix\ Apps
