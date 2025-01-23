@@ -1,83 +1,78 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 
-version: 2
-final_space: true
+palette:
+  cursor: "#957FB8"
+  error: "#E82424"
+  git: "#98BB6C"
+  info: "#DCA561"
+  path: "#7E9CD8"
+  ssh: "#957FB8"
+  warn: "#FF9E3B"
+transient_prompt:
+  template: "❯ "
+  background: transparent
+  foreground_templates:
+  - "{{if gt .Code 0}}p:error{{end}}"
+  - "{{if eq .Code 0}}p:cursor{{end}}"
 console_title_template: "{{ .Folder }}"
 blocks:
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
-      - type: session
-        style: plain
-        foreground: p:ssh
-        background: transparent
-        template: "{{ if .SSHSession }} {{ .HostName }} {{ end }}"
-
-      - type: path
-        style: plain
-        background: transparent
-        foreground: p:path
-        template: '{{.Path}}'
-        properties:
-          style: agnoster_full
-          home_icon: ' '
-          gitdir_format: ' %s'
-          mapped_locations:
-            "~/projects": " "
-            "~/zintouch": " "
-
-      - type: git
-        style: plain
-        foreground: p:git
-        background: transparent
-        template: ' {{ .HEAD }} {{ if or (.Working.Changed) (.Staging.Changed) }} {{ end }}{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}'
-        properties:
-          commit_icon: '@'
-          fetch_status: true
-      #
-      # - type: text
-      #   style: plain
-      #   foreground: p:info
-      #   background: transparent
-      #   templates:
-      #     - ' {{ if .Env.VUE_APP_HOSPITAL }}󰋡 {{ .Env.VUE_APP_HOSPITAL }} {{ end }}'
-      #     - '{{ if .Env.ECONSULT }}󰩂 e-consult {{ end }}'
-
-  - type: prompt
-    alignment: right
-    overflow: hide
-    segments:
-      - type: executiontime
-        style: plain
-        foreground: p:warn
-        background: transparent
-        template: ' {{ .FormattedMs }}'
-        properties:
-          threshold: 5000
-
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
-      - type: 'text'
-        style: 'plain'
-        foreground_templates:
-          - "{{if gt .Code 0}}p:error{{end}}"
-          - "{{if eq .Code 0}}p:cursor{{end}}"
-        background: transparent
-        template: '❯'
-transient_prompt:
-  foreground_templates:
+- type: prompt
+  alignment: left
+  segments:
+  - properties:
+      cache_duration: none
+    template: "{{ if .SSHSession }}\ueba9 {{ .HostName }} {{ end }}"
+    foreground: p:ssh
+    background: transparent
+    type: session
+    style: plain
+  - properties:
+      cache_duration: none
+      gitdir_format:  %s
+      home_icon: "\uf015 "
+      mapped_locations:
+        ~/projects: "\ueac4 "
+        ~/zintouch: "\uf32f "
+      style: agnoster_full
+    template: "{{.Path}}"
+    foreground: p:path
+    background: transparent
+    type: path
+    style: plain
+  - properties:
+      cache_duration: none
+      commit_icon: "@"
+      fetch_status: true
+    template: " {{ .HEAD }} {{ if or (.Working.Changed) (.Staging.Changed) }}\uf044 {{ end }}{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}"
+    foreground: p:git
+    background: transparent
+    type: git
+    style: plain
+  newline: true
+- type: prompt
+  alignment: right
+  overflow: hide
+  segments:
+  - properties:
+      cache_duration: none
+      threshold: 5000
+    template:  {{ .FormattedMs }}
+    foreground: p:warn
+    background: transparent
+    type: executiontime
+    style: plain
+- type: prompt
+  alignment: left
+  segments:
+  - properties:
+      cache_duration: none
+    template: ❯
+    background: transparent
+    type: text
+    style: plain
+    foreground_templates:
     - "{{if gt .Code 0}}p:error{{end}}"
     - "{{if eq .Code 0}}p:cursor{{end}}"
-  background: transparent
-  template: '❯ '
-palette:
-  path: '#7E9CD8'
-  error: '#E82424'
-  cursor: '#957FB8'
-  ssh: '#957FB8'
-  git: '#98BB6C'
-  warn: '#FF9E3B'
-  info: '#DCA561'
+  newline: true
+version: 3
+final_space: true

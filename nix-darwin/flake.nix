@@ -39,10 +39,12 @@
         casks = [
           "google-chrome"
           "wezterm"
+          "microsoft-auto-update"
           "microsoft-teams"
           "microsoft-outlook"
           "microsoft-word"
           "microsoft-excel"
+          "onedrive"
           "docker"
           "parsec"
           "visual-studio-code"
@@ -120,7 +122,7 @@
           skhdConfig = ''
             alt - c : open -a 'WezTerm'
             alt - b : open -a 'Google Chrome'
-            alt - n : open -a 'Microsoft Teams'
+            alt - t : open -a 'Microsoft Teams'
             alt - m : open -a 'Microsoft Outlook'
           '';
         };
