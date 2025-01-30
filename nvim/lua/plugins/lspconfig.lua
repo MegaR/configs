@@ -149,7 +149,9 @@ return {
             jsonls = {},
             sqlls = {},
             yamlls = {},
-            phpactor = {},
+            -- phpactor = {},
+            intelephense = {},
+            tailwindcss = {},
         }
 
         require('mason').setup()
