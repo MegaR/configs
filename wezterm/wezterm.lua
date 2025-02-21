@@ -53,7 +53,7 @@ config.window_background_gradient = {
 }
 
 config.window_background_opacity = 0.99
-config.macos_window_background_blur = 10
+config.macos_window_background_blur = 50
 config.inactive_pane_hsb = {
   saturation = 0.9,
   brightness = 0.5,
