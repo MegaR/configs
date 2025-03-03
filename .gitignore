@@ -12,5 +12,5 @@ tmux-*.log
 !/.luacheckrc
 !/ohmyposh
 !/lazygit
-!/lazydocker
 /lazygit/state.yml
+!/lazydocker

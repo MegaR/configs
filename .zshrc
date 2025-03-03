@@ -21,8 +21,8 @@ zinit light Aloxaf/fzf-tab
 # Use zi ice svn if a plugin/snippet requires an entire subdirectory
 zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
-zinit ice as"completion"
-zinit snippet OMZP::adb/_adb
+#zinit ice as"completion"
+#zinit snippet OMZP::adb/_adb
 zinit ice as"completion"
 zinit snippet OMZP::docker
 zinit ice as"completion"
@@ -110,13 +110,14 @@ export function wtlist() {
     git worktree list | cut -d / -f6 | cut -d ' ' -f1
 }
 export function wtadd() {
-    cd main
-    git pull origin main
-    cd ..
+    # cd main
+    # git pull origin main
+    # cd ..
+    git fetch
 
     git worktree add "$@" --guess-remote
-    cd $1
-    git branch --set-upstream-to=origin/$1 $1 || true
+    cd "$@"
+    git branch --set-upstream-to="origin/$@" "$@" || true
 }
 export function wtremove() {
     worktree=`git worktree list | cut -d / -f6 | cut -d ' ' -f1 | fzf -1 --query "$1"`
