@@ -11,6 +11,7 @@ return {
                 javascriptreact = { 'prettier' },
                 typescript = { 'prettier' },
                 typescriptreact = { 'prettier' },
+                json = { 'prettier' },
                 php = { 'pint' },
             },
         }
