@@ -34,10 +34,13 @@
     eza
     bat
     xclip
+    tokei
 
     kubectl
-    # helm
+    kubelogin
+    kubernetes-helm
     k9s
+    azure-cli
 
     lazygit
     lazydocker
