@@ -103,27 +103,54 @@ alias pbpaste='xclip -selection clipboard -o'
 
 # functions
 export function wt() {
-    worktree=`git worktree list | cut -d ' ' -f1 | fzf -1 --query "$1"`
-    cd ${worktree}
+    worktree=`git worktree list | awk '{print $1}' | fzf -1 --query "$1"`
+    cd "${worktree}"
 }
+
 export function wtlist() {
-    git worktree list | cut -d / -f6 | cut -d ' ' -f1
+    git worktree list | awk '{
+        # Extract the last part of the path
+        split($1, path_parts, "/")
+        print path_parts[length(path_parts)]
+    }'
 }
+
 export function wtadd() {
-    # cd main
-    # git pull origin main
-    # cd ..
     git fetch
 
-    git worktree add "$@" --guess-remote
-    cd "$@"
-    git branch --set-upstream-to="origin/$@" "$@" || true
+    # Store the full argument
+    branch_name="$@"
+
+    # Check if the branch already exists remotely
+    if git ls-remote --heads origin "$branch_name" | grep -q "$branch_name"; then
+        echo "Adding worktree for existing branch: $branch_name"
+        git worktree add "$branch_name" "$branch_name"
+    else
+        echo "Creating new branch: $branch_name"
+        git worktree add -b "$branch_name" "$branch_name" origin/main
+    fi
+
+    # Change to the new worktree
+    cd "$branch_name"
 }
 export function wtremove() {
-    worktree=`git worktree list | cut -d / -f6 | cut -d ' ' -f1 | fzf -1 --query "$1"`
-    echo "Deleting worktree $worktree"
-    git worktree remove $worktree
-    git branch -d $worktree
+    # Get full worktree path and branch name
+    worktree_info=$(git worktree list | fzf -1 --query "$1")
+    if [[ -z "$worktree_info" ]]; then
+        echo "No worktree selected"
+        return 1
+    fi
+
+    # Extract path and branch from the selected line
+    worktree_path=$(echo "$worktree_info" | awk '{print $1}')
+    branch=$(echo "$worktree_info" | awk '{print $3}' | sed 's/[][]//g')
+
+    # Get directory name for display
+    dir_name=$(basename "$worktree_path")
+
+    echo "Deleting worktree $dir_name (branch: $branch)"
+    git worktree remove "$dir_name"
+    git branch -d "$branch"
 }
 
 # Vars
@@ -139,6 +166,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 if command -v git >/dev/null; then
     git config --global rerere.enabled true
     git config --global diff.algorithm histogram
+    git config --global init.defaultBranch main
+    git config --global pull.rebase false
 fi
 
 eval "$(zoxide init --cmd cd zsh)"
