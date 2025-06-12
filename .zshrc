@@ -101,56 +101,91 @@ alias cat='bat -pp'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-# functions
+# Navigate to a worktree
 export function wt() {
-    worktree=`git worktree list | awk '{print $1}' | fzf -1 --query "$1"`
-    cd "${worktree}"
+    local worktree=$(git worktree list | awk '{print $1}' | fzf -1 --query "$1" --prompt="Select worktree: ")
+    if [[ -n "$worktree" ]]; then
+        echo "Switching to: $worktree"
+        cd "${worktree}"
+    else
+        echo "No worktree selected"
+    fi
 }
 
+# List all worktrees with more details
 export function wtlist() {
-    git worktree list | awk '{
-        # Extract the last part of the path
-        split($1, path_parts, "/")
-        print path_parts[length(path_parts)]
-    }'
+    git worktree list
 }
 
+# Add a new worktree
 export function wtadd() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: wtadd <branch-name>"
+        return 1
+    fi
+
     git fetch
 
     # Store the full argument
-    branch_name="$@"
+    local branch_name="$1"
+    local base_branch="${2:-origin/main}"
 
     # Check if the branch already exists remotely
     if git ls-remote --heads origin "$branch_name" | grep -q "$branch_name"; then
         echo "Adding worktree for existing branch: $branch_name"
         git worktree add "$branch_name" "$branch_name"
     else
-        echo "Creating new branch: $branch_name"
-        git worktree add -b "$branch_name" "$branch_name" origin/main
+        echo "Creating new branch: $branch_name based on $base_branch"
+        git worktree add -b "$branch_name" "$branch_name" "$base_branch"
     fi
 
     # Change to the new worktree
     cd "$branch_name"
 }
+
+# Remove a worktree and its branch
 export function wtremove() {
-    # Get full worktree path and branch name
-    worktree_info=$(git worktree list | fzf -1 --query "$1")
+    local worktree_info=$(git worktree list | fzf -1 --query "$1" --prompt="Select worktree to remove: ")
     if [[ -z "$worktree_info" ]]; then
         echo "No worktree selected"
         return 1
     fi
 
     # Extract path and branch from the selected line
-    worktree_path=$(echo "$worktree_info" | awk '{print $1}')
-    branch=$(echo "$worktree_info" | awk '{print $3}' | sed 's/[][]//g')
+    local worktree_path=$(echo "$worktree_info" | awk '{print $1}')
+    local branch=$(echo "$worktree_info" | awk '{print $3}' | sed 's/[][]//g')
 
     # Get directory name for display
-    dir_name=$(basename "$worktree_path")
+    local dir_name=$(basename "$worktree_path")
 
-    echo "Deleting worktree $dir_name (branch: $branch)"
-    git worktree remove "$dir_name"
-    git branch -d "$branch"
+    echo -e "\033[1;33mDeleting worktree:\033[0m $dir_name"
+    echo -e "\033[1;33mBranch:\033[0m $branch"
+    echo -e "\033[1;33mPath:\033[0m $worktree_path"
+
+    echo -n "Are you sure? (y/N) "
+    read -r REPLY
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        git worktree remove "$worktree_path" || {
+            echo "Failed to remove worktree. Trying with --force..."
+            git worktree remove --force "$worktree_path"
+        }
+        if [[ "$branch" != "(detached)" && "$branch" != "main" && "$branch" != "master" ]]; then
+            echo "Removing branch: $branch"
+            git branch -D "$branch" || echo "Failed to delete branch $branch"
+        else
+            echo "Skipping branch deletion for $branch"
+        fi
+    else
+        echo "Operation cancelled"
+    fi
+}
+
+# Prune worktrees that no longer exist on disk
+export function wtprune() {
+    echo "Pruning invalid worktrees..."
+    git worktree prune -v
+    echo "Done!"
 }
 
 # Vars
