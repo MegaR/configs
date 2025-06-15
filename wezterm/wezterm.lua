@@ -46,12 +46,6 @@ config.colors = {
   }
 }
 
-config.window_background_gradient = {
-  colors = { '#1F1F28', '#1a1a22' },
-  -- Specifices a Linear gradient starting in the top left corner.
-  orientation = { Linear = { angle = -45.0 } },
-}
-
 config.window_background_opacity = 0.99
 config.macos_window_background_blur = 50
 config.inactive_pane_hsb = {
@@ -64,9 +58,31 @@ config.enable_tab_bar = true
 config.max_fps = 120
 -- config.enable_scroll_bar = true
 
+local background = '~/.config/wezterm/eclipse.jpg'
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   config.default_domain = 'WSL:Ubuntu-20.04'
+  background = 'c:/Users/RAald/eclipse.jpg'
 end
+
+config.background = {
+  {
+    source = {File=background},
+    vertical_align="Middle",
+    -- hsb={brightness=0.01},
+  },
+  {
+    source = {Color='#1F1F28'},
+    width="100%",
+    height="100%",
+    opacity=0.9,
+  }
+}
+
+-- config.window_background_gradient = {
+--   colors = { '#1F1F28', '#1a1a22' },
+--   -- Specifices a Linear gradient starting in the top left corner.
+--   orientation = { Linear = { angle = -45.0 } },
+-- }
 
 config.window_decorations = 'RESIZE'
 config.window_padding = {
