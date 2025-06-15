@@ -49,7 +49,7 @@
     tig
     lastpass-cli
 
-    nodejs_20
+    nodejs_22
     nodePackages.typescript
     nodePackages.prettier
     bun
