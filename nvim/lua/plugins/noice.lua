@@ -32,5 +32,7 @@ return {
         require('notify').setup {
             background_colour = '#000000',
         }
+
+        vim.keymap.set('n', '<leader>nd', require('notify').dismiss, {  desc = '[N]oice [D]ismiss' })
     end,
 }
