@@ -54,7 +54,8 @@
 
     nodejs_22
     nodePackages.typescript
-    nodePackages.prettier
+   (pkgs.nodePackages.prettier.overrideAttrs (oldAttrs: { postInstall = oldAttrs.postInstall or "" + '' rm $out/LICENSE ''; }))
+
     bun
     ((pkgs.yarn.override { nodejs = null; }).overrideAttrs (oldAttrs: { meta.platforms = nodejs.meta.platforms; }))
     lua
