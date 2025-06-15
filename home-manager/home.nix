@@ -35,6 +35,8 @@
     bat
     xclip
     tokei
+    dust
+    dua
 
     kubectl
     kubelogin
