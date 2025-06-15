@@ -48,12 +48,17 @@ customCompletion "bun" "bun completions"
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
+# edit-command-line
+autoload edit-command-line
+zle -N edit-command-line
+
 # Keybindings
 bindkey '^y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey '\C-e' edit-command-line
 
 # History
 HISTSIZE=5000
