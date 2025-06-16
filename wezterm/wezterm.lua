@@ -58,7 +58,7 @@ config.enable_tab_bar = true
 config.max_fps = 120
 -- config.enable_scroll_bar = true
 
-local background = '~/.config/wezterm/eclipse.jpg'
+local background = wezterm.home_dir .. '/.config/wezterm/eclipse.jpg'
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   config.default_domain = 'WSL:Ubuntu-20.04'
   background = 'c:/Users/RAald/eclipse.jpg'
