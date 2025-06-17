@@ -146,6 +146,8 @@ export function wtadd() {
 
     # Change to the new worktree
     cd "$branch_name"
+
+    git branch --set-upstream-to=origin/$branch_name
 }
 
 # Remove a worktree and its branch
