@@ -25,6 +25,7 @@
     cargo
 
     neovim
+    zellij
     ripgrep
     fzf
     imgcat

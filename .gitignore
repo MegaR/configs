@@ -14,3 +14,4 @@ tmux-*.log
 !/lazygit
 /lazygit/state.yml
 !/lazydocker
+!/zellij
