@@ -38,6 +38,7 @@
     tokei
     dust
     dua
+    dive
 
     kubectl
     kubelogin
