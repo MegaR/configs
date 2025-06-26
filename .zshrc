@@ -210,6 +210,7 @@ if command -v git >/dev/null; then
     git config --global diff.algorithm histogram
     git config --global init.defaultBranch main
     git config --global pull.rebase false
+    git config --global push.default current
 fi
 
 eval "$(zoxide init --cmd cd zsh)"
