@@ -38,6 +38,7 @@
         # homebrew casks
         casks = [
           "google-chrome"
+          "zen"
           "wezterm"
           "microsoft-auto-update"
           "microsoft-teams"
@@ -50,6 +51,7 @@
           "visual-studio-code"
           "bruno"
           "betterdisplay"
+          "ghostty"
         ];
         # appstore packages
         masApps = {
@@ -96,8 +98,9 @@
         dock.autohide = true;
         dock.minimize-to-application = true;
         dock.persistent-apps = [
-          "/Applications/WezTerm.app"
-          "/Applications/Google Chrome.app"
+          # "/Applications/WezTerm.app"
+          "/Applications/Ghostty.app"
+          "/Applications/Zen.app"
           "/Applications/Microsoft Teams.app"
           "/Applications/Microsoft Outlook.app"
         ];
@@ -122,8 +125,8 @@
         skhd = {
           enable = true;
           skhdConfig = ''
-            alt - c : open -a 'WezTerm'
-            alt - b : open -a 'Google Chrome'
+            alt - c : open -a 'Ghostty'
+            alt - b : open -a 'Zen'
             alt - t : open -a 'Microsoft Teams'
             alt - m : open -a 'Microsoft Outlook'
           '';

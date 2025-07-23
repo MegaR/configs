@@ -225,6 +225,7 @@ fi
 # source "${HOME}/.config/wezterm.sh"
 
 # Zellij
+ZELLIJ_AUTO_ATTACH=true
 if [[ -z "$ZELLIJ" ]]; then
     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
         zellij attach -c

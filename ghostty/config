@@ -1,0 +1,10 @@
+macos-option-as-alt = left
+macos-titlebar-style = "hidden"
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+theme = kanagawabones
+background-opacity = 0.95
+background-blur = 20
+font-family = "Monaspace Neon"
+font-feature="ss01,ss02,ss03,ss04,ss05,ss06,ss07,ss08,ss09,calt,dlig,liga"
+

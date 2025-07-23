@@ -15,3 +15,4 @@ tmux-*.log
 /lazygit/state.yml
 !/lazydocker
 !/zellij
+!/ghostty
