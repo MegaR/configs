@@ -55,6 +55,7 @@
     gh-dash
     tig
     lastpass-cli
+    opencode
 
     nodejs_22
     nodePackages.typescript
