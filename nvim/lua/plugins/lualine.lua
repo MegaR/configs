@@ -2,7 +2,6 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
         { 'yavorski/lualine-macro-recording.nvim' },
-        { 'yavorski/lualine-lsp-client-name.nvim' },
     },
     opts = {
         options = {
@@ -17,7 +16,7 @@ return {
         },
         sections = {
             lualine_c = { 'filename', 'macro_recording', '%S' },
-            lualine_x = { 'lsp_client_name', 'encoding', 'fileformat', 'filetype' },
+            lualine_x = { 'encoding', 'fileformat', 'lsp_status', 'filetype' },
         },
     },
 }
