@@ -2,12 +2,11 @@ return {
     'rebelot/kanagawa.nvim',
     dependencies = {
         'nvim-lualine/lualine.nvim',
-        'levouh/tint.nvim',
     },
     config = function()
         require('kanagawa').setup {
             transparent = true,
-            -- dimInactive = true,
+            dimInactive = false,
             colors = {
                 theme = {
                     all = {
@@ -19,6 +18,5 @@ return {
             },
         }
         vim.cmd 'colorscheme kanagawa'
-        require('tint').setup {}
     end,
 }
