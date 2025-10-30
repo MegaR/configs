@@ -174,8 +174,10 @@ export function wtremove() {
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         git worktree remove "$worktree_path" || {
-            echo "Failed to remove worktree. Trying with --force..."
-            git worktree remove --force "$worktree_path"
+            # echo "Failed to remove worktree. Trying with --force..."
+            # git worktree remove --force "$worktree_path"
+            echo "Failed to remove worktree."
+            return 0
         }
         if [[ "$branch" != "(detached)" && "$branch" != "main" && "$branch" != "master" ]]; then
             echo "Removing branch: $branch"
