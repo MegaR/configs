@@ -13,16 +13,13 @@ return {
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
         { 'j-hui/fidget.nvim', opts = {} },
 
-        -- Additional lua configuration, makes nvim stuff amazing!
-        { 'folke/neodev.nvim', opts = {} },
-
         -- DAP
         'jay-babu/mason-nvim-dap.nvim',
         'williamboman/mason.nvim',
         'mfussenegger/nvim-dap',
     },
     config = function()
-        local lspconfig = require 'lspconfig'
+        local lspconfig = vim.lsp.config
 
         -- [[ Configure LSP ]]
         --  This function gets run when an LSP connects to a particular buffer.
@@ -166,7 +163,11 @@ return {
                 },
             },
             -- phpactor = {},
-            intelephense = {},
+            intelephense = {
+                indent = {
+                    enable = true,
+                },
+            },
             tailwindcss = {},
         }
 

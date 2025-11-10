@@ -19,9 +19,6 @@ return {
 
         -- adds symbols
         'onsails/lspkind.nvim',
-
-        --tailwind
-        "tailwind-tools",
     },
     config = function()
         -- [[ Configure nvim-cmp ]]
@@ -70,7 +67,6 @@ return {
                     mode = 'symbol',
                     maxwidth = 50,
                     elipsis_char = '…',
-                    before = require("tailwind-tools.cmp").lspkind_format,
                     symbol_map = {
                         Text = '󰉿',
                         Method = '󰆧',
