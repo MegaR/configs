@@ -39,9 +39,10 @@
     dust
     dua
     dive
+    websocat
 
     kubectl
-    kubelogin
+    # kubelogin
     kubernetes-helm
     k9s
     azure-cli
@@ -59,7 +60,8 @@
 
     nodejs_22
     nodePackages.typescript
-   (pkgs.nodePackages.prettier.overrideAttrs (oldAttrs: { postInstall = oldAttrs.postInstall or "" + '' rm $out/LICENSE ''; }))
+   # (pkgs.nodePackages.prettier.overrideAttrs (oldAttrs: { postInstall = oldAttrs.postInstall or "" + '' rm $out/LICENSE ''; }))
+    pkgs.nodePackages.prettier
 
     bun
     ((pkgs.yarn.override { nodejs = null; }).overrideAttrs (oldAttrs: { meta.platforms = nodejs.meta.platforms; }))
