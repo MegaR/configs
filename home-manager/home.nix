@@ -58,7 +58,7 @@
     lastpass-cli
     opencode
 
-    nodejs_22
+    nodejs_24
     nodePackages.typescript
    # (pkgs.nodePackages.prettier.overrideAttrs (oldAttrs: { postInstall = oldAttrs.postInstall or "" + '' rm $out/LICENSE ''; }))
     pkgs.nodePackages.prettier
