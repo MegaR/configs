@@ -38,11 +38,11 @@ return {
                 nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
                 -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-                nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-                nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-                nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-                nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-                nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+                -- nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+                -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+                -- nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+                -- nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+                -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
                 -- See `:help K` for why this keymap
                 nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -239,9 +239,9 @@ return {
             local widgets = require 'dap.ui.widgets'
             widgets.centered_float(widgets.scopes)
         end, { desc = 'Scopes' })
-        vim.keymap.set('n', '<Leader>dt', function()
-            require('telescope').extensions.dap.commands {}
-        end, { desc = 'Scopes' })
+        -- vim.keymap.set('n', '<Leader>dt', function()
+        --     require('telescope').extensions.dap.commands {}
+        -- end, { desc = 'Scopes' })
 
         -- You can add other tools here that you want Mason to install
         -- for you, so that they are available from within Neovim.
