@@ -169,7 +169,7 @@ return {
             function()
                 Snacks.picker.grep()
             end,
-            desc = 'Search Files',
+            desc = 'Search Grep',
         },
         {
             '<leader>sw',
@@ -183,7 +183,14 @@ return {
             function()
                 Snacks.picker.help()
             end,
-            desc = 'Search Files',
+            desc = 'Search Help',
+        },
+        {
+            '<leader>sk',
+            function()
+                Snacks.picker.keymaps()
+            end,
+            desc = 'Search Keymaps',
         },
         {
             '<leader>sd',
