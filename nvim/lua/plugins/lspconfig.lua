@@ -9,6 +9,8 @@ return {
         'williamboman/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
 
+        'saghen/blink.cmp',
+
         -- Useful status updates for LSP
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
         { 'j-hui/fidget.nvim', opts = {} },
@@ -93,13 +95,6 @@ return {
                 end
             end,
         })
-
-        -- LSP servers and clients are able to communicate to each other what features they support.
-        --  By default, Neovim doesn't support everything that is in the LSP specification.
-        --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-        --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
         local servers = {
             html = { filetypes = { 'html', 'twig', 'hbs' } },
@@ -271,6 +266,10 @@ return {
                     -- by the server configuration above. Useful when disabling
                     -- certain features of an LSP (for example, turning off formatting for tsserver)
                     server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
+                    -- I got this somewhat from the blink docs. Might be incorrect. Who knows. Should probably re-do lspconfig anyway
+                    server.capabilities = require('blink.cmp').get_lsp_capabilities(server.capabilities)
+
                     lspconfig[server_name].setup(server)
                 end,
             },
