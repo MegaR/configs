@@ -212,7 +212,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- close buffer
-vim.keymap.set('n', '<c-x>', ':bd<cr>')
+-- vim.keymap.set('n', '<c-x>', ':bd<cr>')
 
 -- open file_browser with the path of the current buffer
 -- vim.api.nvim_set_keymap(
