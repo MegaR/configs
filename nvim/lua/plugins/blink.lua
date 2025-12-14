@@ -4,10 +4,14 @@ return {
     dependencies = {
         'rafamadriz/friendly-snippets',
 
+        -- some extran snippit stuff
         { 'L3MON4D3/LuaSnip', version = 'v2.*' },
         'echasnovski/mini.snippets',
         'hrsh7th/vim-vsnip',
         'https://codeberg.org/FelipeLema/bink-cmp-vsnip.git',
+
+        -- yanky integration
+        { 'marcoSven/blink-cmp-yanky' },
     },
 
     -- use a release tag to download pre-built binaries
@@ -46,7 +50,19 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
+            default = { 'lsp', 'path', 'snippets', 'buffer', 'yank' },
+            providers = {
+                yank = {
+                    name = 'yank',
+                    module = 'blink-yanky',
+                    opts = {
+                        minLength = 5,
+                        onlyCurrentFiletype = true,
+                        trigger_characters = { '"' },
+                        kind_icon = '󰅍',
+                    },
+                },
+            },
         },
 
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
