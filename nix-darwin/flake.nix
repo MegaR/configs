@@ -52,6 +52,7 @@
           "bruno"
           "betterdisplay"
           "ghostty"
+          "tailscale"
         ];
         # appstore packages
         masApps = {
