@@ -35,6 +35,9 @@
           "mas"
           # "koekeishiya/formulae/skhd"
         ];
+        taps = [
+            "laradumps/app"
+          ];
         # homebrew casks
         casks = [
           "google-chrome"
@@ -46,13 +49,14 @@
           "microsoft-word"
           "microsoft-excel"
           "onedrive"
-          "docker"
+          "docker-desktop"
           "parsec"
           "visual-studio-code"
           "bruno"
           "betterdisplay"
           "ghostty"
-          "tailscale"
+          "tailscale-app"
+          "laradumps/app/laradumps"
         ];
         # appstore packages
         masApps = {
