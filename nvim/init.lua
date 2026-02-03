@@ -230,29 +230,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
--- Base64
-vim.keymap.set("v", "<leader>b", function()
-  vim.cmd([[silent! normal! "zy]])          -- yank selection into z
-  local s = vim.fn.getreg("z")
-
-  local out = vim.fn.system("base64", s):gsub("%s+$", "")
-
-  -- Replace selection using a register (avoids cursor off-by-one issues)
-  vim.fn.setreg("z", out)
-  vim.cmd([[silent! normal! gv"_d"zP]])     -- delete selection, paste before cursor
-end, { desc = "Base64 encode selection" })
-
-vim.keymap.set("v", "<leader>B", function()
-  vim.cmd([[silent! normal! "zy]])          -- yank selection into z
-  local s = vim.fn.getreg("z")
-
-  local out = vim.fn.system("base64 --decode", s):gsub("%s+$", "")
-
-  -- Replace selection using a register (avoids cursor off-by-one issues)
-  vim.fn.setreg("z", out)
-  vim.cmd([[silent! normal! gv"_d"zP]])     -- delete selection, paste before cursor
-end, { desc = "Base64 decode selection" })
-
 -- Tabs
 -- vim.keymap.set('n', '<Tab>', '<cmd>tabnext<cr>', { desc = 'Next tab', noremap = true});
 -- vim.keymap.set('n', '<S-Tab>', '<cmd>tabprevious<cr>', { desc = 'Previous tab', noremap = true});
