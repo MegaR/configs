@@ -30,7 +30,7 @@
     fzf
     imgcat
     gum
-    yt-dlp
+    # yt-dlp
     jq
     eza
     bat
@@ -67,6 +67,8 @@
     ((pkgs.yarn.override { nodejs = null; }).overrideAttrs (oldAttrs: { meta.platforms = nodejs.meta.platforms; }))
     lua
     luajitPackages.luarocks
+    dart-sass
+    mysql80
 
     unzip
     zip
