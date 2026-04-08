@@ -59,9 +59,8 @@
     opencode
 
     nodejs_24
-    nodePackages.typescript
-   # (pkgs.nodePackages.prettier.overrideAttrs (oldAttrs: { postInstall = oldAttrs.postInstall or "" + '' rm $out/LICENSE ''; }))
-    pkgs.nodePackages.prettier
+    typescript
+    prettier
 
     bun
     ((pkgs.yarn.override { nodejs = null; }).overrideAttrs (oldAttrs: { meta.platforms = nodejs.meta.platforms; }))
