@@ -1,79 +1,64 @@
 return {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-        'OXY2DEV/markview.nvim',
-        'nvim-treesitter/nvim-treesitter-textobjects',
+  -- Treesitter parsers + queries for Neovim 0.12
+  'neovim-treesitter/nvim-treesitter',
+  dependencies = {
+    'neovim-treesitter/treesitter-parser-registry',
+    'OXY2DEV/markview.nvim',
+
+    -- Keep only if you actively use textobjects and have migrated it too
+    {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      branch = 'main',
     },
-    build = ':TSUpdate',
-    config = function()
-        -- [[ Configure Treesitter ]]
-        -- See `:help nvim-treesitter`
-        ---@diagnostic disable-next-line: missing-fields
-        require('nvim-treesitter').setup {
-            -- Add languages to be installed here that you want installed for treesitter
-            ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'yaml', 'tsx', 'typescript', 'vue', 'vimdoc', 'vim', 'php', 'regex'},
+  },
+  lazy = false,
+  build = ':TSUpdate',
+  config = function()
+    local ts = require('nvim-treesitter')
 
-            -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-            auto_install = true,
+    -- Install parsers
+    ts.install({
+      'c',
+      'cpp',
+      'go',
+      'lua',
+      'python',
+      'rust',
+      'yaml',
+      'tsx',
+      'typescript',
+      'vue',
+      'vimdoc',
+      'vim',
+      'php',
+      'regex',
+    })
 
-            highlight = { enable = true },
-            indent = { enable = true },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = '<c-space>',
-                    node_incremental = 'v',
-                    scope_incremental = '<c-s>',
-                    node_decremental = 'V',
-                },
-            },
-            textobjects = {
-                select = {
-                    enable = true,
-                    lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-                    keymaps = {
-                        -- You can use the capture groups defined in textobjects.scm
-                        ['aa'] = '@parameter.outer',
-                        ['ia'] = '@parameter.inner',
-                        ['af'] = '@function.outer',
-                        ['if'] = '@function.inner',
-                        ['ac'] = '@class.outer',
-                        ['ic'] = '@class.inner',
-                    },
-                },
-                move = {
-                    enable = true,
-                    set_jumps = true, -- whether to set jumps in the jumplist
-                    goto_next_start = {
-                        [']m'] = '@function.outer',
-                        [']]'] = '@class.outer',
-                    },
-                    goto_next_end = {
-                        [']M'] = '@function.outer',
-                        [']['] = '@class.outer',
-                    },
-                    goto_previous_start = {
-                        ['[m'] = '@function.outer',
-                        ['[['] = '@class.outer',
-                    },
-                    goto_previous_end = {
-                        ['[M'] = '@function.outer',
-                        ['[]'] = '@class.outer',
-                    },
-                },
-                swap = {
-                    enable = true,
-                    swap_next = {
-                        ['<leader>cp'] = '@parameter.inner',
-                        ['<leader>cf'] = '@function.outer',
-                    },
-                    swap_previous = {
-                        ['<leader>cP'] = '@parameter.inner',
-                        ['<leader>cF'] = '@function.outer',
-                    },
-                },
-            },
-        }
-    end,
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = {
+        'c',
+        'cpp',
+        'go',
+        'lua',
+        'python',
+        'rust',
+        'yaml',
+        'typescript',
+        'typescriptreact',
+        'javascript',
+        'javascriptreact',
+        'tsx',
+        'vue',
+        'vim',
+        'php',
+        'markdown',
+      },
+      callback = function(args)
+        local ok = pcall(vim.treesitter.start, args.buf)
+        if ok then
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
+    })
+  end,
 }
