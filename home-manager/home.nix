@@ -67,7 +67,7 @@
     lua
     luajitPackages.luarocks
     dart-sass
-    mysql80
+    mysql84
 
     unzip
     zip
