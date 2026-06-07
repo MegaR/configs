@@ -9,7 +9,7 @@ return {
   },
   config = function()
     require('i18n').setup({
-      activation = 'auto',
+      activation = 'manual',
       locales = { 'nl', 'en' },
       sources = { 'src/resources/lang/{locales}.json', 'src/languages/{locales}.json' },
       func_pattern = {'t', '$t', 'trans'},
