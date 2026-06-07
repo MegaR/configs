@@ -104,6 +104,7 @@ return {
                     telemetry = { enable = false },
                 },
             },
+            ts_ls = {},
             -- ts_ls = {
             --     plugins = {
             --     },
