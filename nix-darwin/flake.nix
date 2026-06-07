@@ -36,7 +36,7 @@
           # "koekeishiya/formulae/skhd"
         ];
         taps = [
-            "laradumps/app"
+            # "laradumps/app"
           ];
         # homebrew casks
         casks = [
@@ -56,7 +56,7 @@
           "betterdisplay"
           "ghostty"
           "tailscale-app"
-          "laradumps/app/laradumps"
+          # "laradumps/app/laradumps"
         ];
         # appstore packages
         masApps = {
