@@ -1,7 +1,7 @@
 return {
   'yelog/i18n.nvim',
   dependencies = {
-    'nvim-treesitter/nvim-treesitter',
+    'neovim-treesitter/nvim-treesitter',
     -- optional pickers:
     -- 'ibhagwan/fzf-lua',
     -- 'nvim-telescope/telescope.nvim',
