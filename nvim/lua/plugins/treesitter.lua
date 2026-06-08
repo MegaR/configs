@@ -31,6 +31,7 @@ return {
       'vimdoc',
       'vim',
       'php',
+      'php_only',
       'regex',
     })
 
